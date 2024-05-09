@@ -27,8 +27,9 @@ Make sure to activate the virtual environment before run, using one of the comma
 If ```[level]``` is not provided, level 0 (the first stage) will be open. 
   
 ## Copyrights
-Developed by [Bailey's Dad](https://github.com/chiho80/bailey)  
-Tile images collected from grafxkid.itch.io  
-Squirrel sprites based on original artworks of moose-stache.itch.io  
-SFXs collected from pixabay.com, mixkit.co  
-Music from #uppbeat (Free For Creators!) https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio
+Freely download and update codes. Do not push the changes. Other resources, including SFXs, music, tile & entity images, cannot be redistributed without permission of original creators.  
+* Code developed by [Bailey's Dad](https://github.com/chiho80/bailey)  
+* Tile images collected from grafxkid.itch.io  
+* Squirrel sprites based on original artworks of moose-stache.itch.io  
+* SFXs collected from pixabay.com, mixkit.co  
+* Music from #uppbeat (Free For Creators!) https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio  
