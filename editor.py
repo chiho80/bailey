@@ -3,12 +3,6 @@ import pygame
 from scripts.utils import load_images
 from scripts.tilemap import Tilemap
 
-# DISPLAY_SIZE = (256, 144)
-# RENDER_SCALE = 6
-
-DISPLAY_SIZE = (512, 288)
-RENDER_SCALE = 4
-
 DISPLAY_SIZE = (800, 452)
 RENDER_SCALE = 2
 
@@ -20,8 +14,10 @@ RENDER_SCALE = 2
 # 5 = winter 1
 # 6 = winter 2
 
-
-LEVEL = 4
+try:
+    LEVEL = int(sys.argv[1])
+except:
+    LEVEL = 0
 
 
 class Editor:
