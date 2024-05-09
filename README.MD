@@ -19,16 +19,15 @@ pip install pygbag
 ```
 
 ## Run game
-```python main.py```  
-Make sure to activate the virtual environment before run, using one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows
+```python main.py [level]```  
+Make sure to activate the virtual environment before run, using one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows. If ```[level]``` is not provided, level 0 (the first stage) will be loaded. 
 
 ## Edit map
 ```python editor.py [level]```  
 If ```[level]``` is not provided, level 0 (the first stage) will be open. 
   
-
 ## Copyrights
-Developed by [Bailey's Dad](https://github.com/chiho80/bailey)
+Developed by [Bailey's Dad](https://github.com/chiho80/bailey)  
 Tile images collected from grafxkid.itch.io  
 Squirrel sprites based on original artworks of moose-stache.itch.io  
 SFXs collected from pixabay.com, mixkit.co  

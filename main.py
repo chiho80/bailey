@@ -16,6 +16,11 @@ from scripts.game import Game
 from scripts.particle import Particle
 from scripts.spark import Spark
 
+try:
+    FIRST_LEVEL = int(sys.argv[1])
+except:
+    FIRST_LEVEL = 0
+
 
 async def main():
     """Main game loop happens in this async function.
@@ -25,9 +30,9 @@ async def main():
     because of the speed issue.
     """
 
-    game = Game()
+    game = Game(FIRST_LEVEL)
     quit_game = False
-    game.reset_game()
+    game.reset_game(FIRST_LEVEL)
 
     # Background music starts.
     pygame.mixer.music.load("data/music/bgm.wav")
@@ -58,7 +63,7 @@ async def main():
                             quit_game = True
                             selection_made = True
             if not quit_game:
-                game.reset_game()
+                game.reset_game(FIRST_LEVEL)
                 game.load_level(game.level)
             else:
                 pygame.quit()

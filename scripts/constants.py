@@ -1,6 +1,3 @@
-# The level to show when started.
-FIRST_LEVEL = 0
-
 # The first lives
 # If it's 4, a very first player + 3 more lives, total 4. 3 heads will be displayed
 FIRST_LIVES = 4

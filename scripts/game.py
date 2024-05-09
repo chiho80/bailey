@@ -13,7 +13,7 @@ from scripts.utils import (
 
 
 class Game:
-    def __init__(self):
+    def __init__(self, first_level):
         pygame.mixer.pre_init(44100, 16, 2, 4096)
         pygame.init()
         pygame.font.init()
@@ -30,7 +30,7 @@ class Game:
         self.running = False
         self.assets = load_asset_images()
         self.sfx = load_asset_sfx()
-        self.level = FIRST_LEVEL
+        self.level = first_level
         self.season = SEASONS[str(self.level)]
         self.clouds = Clouds(self.assets["clouds"], count=8)
         self.player = Player(self, (70, 20), (12, 22))
@@ -45,19 +45,17 @@ class Game:
         self.score_highest = load_score_highest("data/score_highest.dat")
 
         self.statusboard = StatusBoard(self)
-        self.is_game_started = (
-            True if FIRST_LEVEL == -1 else False
-        )  # When the game app is loaded, it's not started.
+        self.is_game_started = False  # When the game app is loaded, it's not started.
         self.mute = False
 
-    def reset_game(self):
+    def reset_game(self, first_level):
         """Should be called when the new game is starting.
         ex) very first game, or new game after the previous game is over.
         The parameters related to level, lives, and score will be recovered to the default values
         """
         # level = 0 : First level. Statusboard will display self.level+1
         # Use level = -1 for dev mode.
-        self.level = FIRST_LEVEL
+        self.level = first_level
         self.season = SEASONS[str(self.level)]
         self.background = Background(
             self.display, self.assets["background"], season=self.season
