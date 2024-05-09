@@ -19,17 +19,17 @@ pip install pygbag
 ```
 
 ## Run game
-```python main.py``` 
-  Make sure to activate the virtual environment before run, using one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows
+```python main.py```  
+Make sure to activate the virtual environment before run, using one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows
 
 ## Edit map
-```python editor.py [level]```
-  If ```[level]``` is not provided, level 0 (the first stage) will be open. 
+```python editor.py [level]```  
+If ```[level]``` is not provided, level 0 (the first stage) will be open. 
   
 
 ## Copyrights
-Developer Bailey's Dad 
-  Tile images from grafxkid.itch.io 
-  Original squirrel sprites from moose-stache.itch.io 
-  SFX from pixabay.com, mixkit.co 
-  Music from #uppbeat (FREE FOR CREATORS!) https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio 
+Developed by [Bailey's Dad](https://github.com/chiho80/bailey)
+Tile images collected from grafxkid.itch.io  
+Squirrel sprites based on original artworks of moose-stache.itch.io  
+SFXs collected from pixabay.com, mixkit.co  
+Music from #uppbeat (Free For Creators!) https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio
