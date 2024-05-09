@@ -27,3 +27,10 @@ Make sure to activate the virtual environment before run, using one of the comma
 If ```[level]``` is not provided, level 0 (the first stage) will be open. 
 
 ```python editor.py [level]```
+
+## Copyrights
+Developer Bailey's Dad 
+Tile images from grafxkid.itch.io 
+Original squirrel sprites from moose-stache.itch.io 
+SFX from pixabay.com, mixkit.co 
+Music from #uppbeat (FREE FOR CREATORS!) https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio 
