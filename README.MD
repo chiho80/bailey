@@ -18,6 +18,13 @@ pip install pygame==2.5.2
 pip install pygbag
 ```
 
+## Distribute the game
+The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a good option to make executables.   
+```
+pip install pyinstaller
+pip install Pillow
+```
+
 ## Run game
 ```python main.py [level]```  
 Make sure to activate the virtual environment before run, using one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows. If ```[level]``` is not provided, level 0 (the first stage) will be loaded. 

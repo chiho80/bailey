@@ -1,5 +1,5 @@
-import sys
 import os
+import sys
 import random
 import math
 import asyncio
@@ -17,10 +17,21 @@ from scripts.particle import Particle
 from scripts.spark import Spark
 from scripts.control import check_keyboard_input
 
+
 try:
     FIRST_LEVEL = int(sys.argv[1])
 except:
     FIRST_LEVEL = 0
+
+# Change working directory to properly access the data/ and scripts/
+try:
+    os.chdir(sys._MEIPASS)
+except:
+    os.chdir(os.getcwd())
+print("Running path=", os.getcwd())
+
+# Set app icon
+pygame.display.set_icon(pygame.image.load("data/images/ico/macos_512x512x32.png"))
 
 
 async def main():
