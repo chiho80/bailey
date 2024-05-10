@@ -139,6 +139,8 @@ class Game:
         self.time_remain = self.time_limit  #  ms
         self.time_start = pygame.time.get_ticks()  # ms
         self.time_paused = 0  # ms (duration of paused time)
+        # To be updated when pause requested, then subtracted when resumed the game
+        self.time_right_before_pause = 0
         self.paused = False
         self.levelcleared = (
             False  # To be converted to True when player hits the finishline tile
