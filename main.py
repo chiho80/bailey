@@ -188,7 +188,8 @@ async def main():
             game.clouds.render(game.display, offset=render_scroll)
 
         # Render map
-        game.tilemap.render(game.display, offset=render_scroll)
+        if game.is_game_started:
+            game.tilemap.render(game.display, offset=render_scroll)
 
         # Render enemies
         for enemy in game.enemies.copy():
@@ -200,7 +201,7 @@ async def main():
 
         # Player can move around only when it's not died.
         # When died, player image won't be rendered.
-        if not game.dead:
+        if not game.dead and game.is_game_started:
             # Update and render the player
             # If shift key is pressed (game.running = True), run!
             game.player.update(
