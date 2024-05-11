@@ -19,7 +19,7 @@ class Game:
         pygame.font.init()
         pygame.display.set_caption("Bailey's adventure")
         self.display_sizes = DISPLAY_SIZE_OPTIONS
-        self.display_size_id = 0  # Initial size will be (1536, 864)
+        self.display_size_id = 0
         resize_screen(self, 0)
         self.display = pygame.Surface(
             self.display_sizes[7],  # 7 is (512,288)). Fix this!! Do not change!!

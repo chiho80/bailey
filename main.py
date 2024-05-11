@@ -28,7 +28,6 @@ try:
     os.chdir(sys._MEIPASS)
 except:
     os.chdir(os.getcwd())
-print("Running path=", os.getcwd())
 
 # Set app icon
 pygame.display.set_icon(pygame.image.load("data/images/ico/macos_512x512x32.png"))
