@@ -18,7 +18,7 @@ NEIGHBOR_OFFSETS_TALL = NEIGHBOR_OFFSETS + [
     (0, 2),
     (1, 2),
 ]
-PHYSICS_TILES = {"grass", "ice", "autumn", "movingtile", "tropic"}
+PHYSICS_TILES = {"grass", "ice", "autumn", "movingtile", "tropic", "decor/fireswing"}
 REWARD_TILES = {"reward/food"}
 FINISH_TILES = {"finishline"}
 AUTOTILE_TYPES = {"grass", "ice", "autumn", "tropic"}

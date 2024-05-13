@@ -21,7 +21,7 @@ from scripts.control import check_keyboard_input
 try:
     FIRST_LEVEL = int(sys.argv[1])
 except:
-    FIRST_LEVEL = 0
+    FIRST_LEVEL = 7
 
 # Change working directory to properly access the data/ and scripts/
 try:
@@ -137,7 +137,7 @@ async def main():
         # To avoid screen ziggling, take integer of scroll
         render_scroll = (int(game.scroll[0]), int(game.scroll[1]))
 
-        # Spawn fireballs
+        # Spawn particles - fireball. Spawners are collected in game.py
         for rect in game.fireball_spawners:
             if random.random() > (1 - FIREBALL_PROB):
                 # Spawn position should be bound in the rect area
@@ -160,7 +160,34 @@ async def main():
                 if abs(dis) < 500:
                     game.sfx["fireball"].play()
 
-        # Spawn particles (leaf at this time)
+        # Spawn particles - fireswing. Spawners are collected in game.py
+        # fireswing members (small fires) will be appended only one time.
+        if not len(game.fireswings):
+            for rect in game.fireswing_spawners:
+                intial_theta = random.random() * 2
+                velocity = (
+                    (random.randrange(8, 12))
+                    * 0.001
+                    * (-1 if random.random() > 0.5 else 1)
+                )
+                # Length of fireswing = 7 (swing = strend of 7 balls)
+                for l in range(7):
+                    pos = (rect.centerx, rect.centery)
+                    game.fireswings.append(
+                        Particle(
+                            game,
+                            "fireswing",
+                            pos,
+                            angular_motion_velocity=velocity,
+                            angular_motion_center=pos,
+                            angular_motion_offset=l * 7,
+                            angular_motion_initial_theta=intial_theta,
+                            frame=0,
+                            freefalling=False,
+                        )
+                    )
+
+        # Spawn particles - leaf. Spawners are collected in game.py
         if VISUAL_EFFECT["leaf"]:
             for rect in game.leaf_spawners:
                 # Make spawn rate (probability) depends on the size of the rect
@@ -302,26 +329,46 @@ async def main():
             if kill:
                 game.particles.remove(particle)
 
-        # Render fireballs
-        for fireball in game.fireballs.copy():
-            # If player hit fireball  ...
-            if game.player.rect().collidepoint(fireball.pos):
-                game.player.blink += 1
-                # Decrease player energy
-                game.player.energy = max(0, game.player.energy + ENERGY["fireball"])
-                game.sfx["hit"].play()
-                # Trigger screen shake effect
-                game.screenshake = max(16, game.screenshake)
-                # If energy is zero, trigger death
-                if game.player.energy == 0:
-                    game.dead += 1
+        if game.is_game_started:
+            # Render fireballs
+            for fireball in game.fireballs.copy():
+                # If player hit fireball  ...
+                if game.player.rect().collidepoint(fireball.pos):
+                    game.player.blink += 1
+                    # Decrease player energy
+                    game.player.energy = max(0, game.player.energy + ENERGY["fireball"])
+                    game.sfx["hit"].play()
+                    # Trigger screen shake effect
+                    game.screenshake = max(16, game.screenshake)
+                    # If energy is zero, trigger death
+                    if game.player.energy == 0:
+                        game.dead += 1
 
-            kill = fireball.update()
-            fireball.render(game.display, offset=render_scroll)
-            # Add additional adjustment to position as needed
-            # fireball.pos[0] += math.sin(fireball.animation.frame * 0.035) * 0.3
-            if kill:
-                game.fireballs.remove(fireball)
+                kill = fireball.update()
+                fireball.render(game.display, offset=render_scroll)
+                # Add additional adjustment to position as needed
+                # fireball.pos[0] += math.sin(fireball.animation.frame * 0.035) * 0.3
+                if kill:
+                    game.fireballs.remove(fireball)
+
+            # Render fireswings
+            for fireswing in game.fireswings.copy():
+                # If player hit fireswing  ...
+                if game.player.rect().collidepoint(fireswing.pos):
+                    game.player.blink += 1
+                    # Decrease player energy
+                    game.player.energy = max(
+                        0, game.player.energy + ENERGY["fireswing"]
+                    )
+                    game.sfx["hit"].play()
+                    # Trigger screen shake effect
+                    game.screenshake = max(16, game.screenshake)
+                    # If energy is zero, trigger death
+                    if game.player.energy == 0:
+                        game.dead += 1
+
+                _ = fireswing.update()
+                fireswing.render(game.display, offset=render_scroll)
 
         # Render textmarks
         # Textmark is 'object', and the spawn, update and remove will be self managed

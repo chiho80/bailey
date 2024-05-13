@@ -16,6 +16,7 @@ def load_asset_images():
         "decor/summer_tree": load_images("tiles/decor/summer_tree"),
         "decor/tropic_tree": load_images("tiles/decor/tropic_tree"),
         "decor/firehole": load_images("tiles/decor/firehole"),
+        "decor/fireswing": load_images("tiles/decor/fireswing"),
         "reward/food": load_images("tiles/reward/food"),
         "player": load_image("entities/Bailey12x22_1.png"),
         "background": {
@@ -152,6 +153,10 @@ def load_asset_images():
         ),
         "projectile": load_image("projectile.png"),
         "small_heads/bailey": load_image("small_heads/bailey.png"),
+        "particle/fireswing": Animation(
+            load_images("particles/fireswing"),
+            img_dur=3,
+        ),
     }
     return assets
 

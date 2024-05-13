@@ -64,6 +64,7 @@ ENERGY = {
     "projectile": -5,
     "fireball": -3,
     "fruit": 1,
+    "fireswing": -0.5,
 }
 
 # Score change

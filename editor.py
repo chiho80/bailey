@@ -44,6 +44,7 @@ class Editor:
             "decor/summer_tree": load_images("tiles/decor/summer_tree"),
             "decor/tropic_tree": load_images("tiles/decor/tropic_tree"),
             "decor/firehole": load_images("tiles/decor/firehole"),
+            "decor/fireswing": load_images("tiles/decor/fireswing"),
             "spawners": load_images("tiles/spawners", trans_color=(0, 0, 0)),
             "reward/food": load_images("tiles/reward/food"),
         }

@@ -103,6 +103,13 @@ class Game:
                 pygame.Rect(firehole["pos"][0], firehole["pos"][1], 16, 16)
             )
 
+        # Collect fireswing spawners
+        self.fireswing_spawners = []
+        for fireswing in self.tilemap.extract([("decor/fireswing", 0)], keep=True):
+            self.fireswing_spawners.append(
+                pygame.Rect(fireswing["pos"][0], fireswing["pos"][1], 16, 16)
+            )
+
         # Create (spawn) entities (player and enemy) at spawners
         self.enemies = []
         for spawner in self.tilemap.extract(
@@ -123,6 +130,7 @@ class Game:
 
         self.projectiles = []  # Collections for projectiles
         self.fireballs = []  # Collections for fireballs
+        self.fireswings = []  # Collections for fires in many fireswings
         self.particles = []  # Collections for particles
         self.sparks = []  # Collections for sparks
         self.textmarks = []  # Collections for floating texts
