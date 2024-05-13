@@ -23,7 +23,8 @@ The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a goo
 ```
 pip install pyinstaller
 pip install Pillow
-```
+```   
+Use build.sh to create an app for MacOS ```bailey.app``` under dist folder. App for MS Windows is not ready yet.
 
 ## Run game
 ```python main.py [level]```  
