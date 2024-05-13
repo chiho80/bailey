@@ -41,19 +41,20 @@ DISPLAY_SIZE_OPTIONS = [
     (1024, 576),
 ]
 
-# Image path base
+# Path image base
 BASE_IMG_PATH = "data/images/"
 
 # Season for each level
-SEASONS = {
-    "-1": "autumn",
-    "0": "summer",
-    "1": "summer",
-    "2": "summer",
-    "3": "autumn",
-    "4": "autumn",
-    "5": "winter",
-    "6": "winter",
+LEVELS = {
+    "-1": {"map": "data/maps/testmap.json", "season": "autumn"},
+    "0": {"map": "data/maps/0.json", "season": "summer"},
+    "1": {"map": "data/maps/1.json", "season": "summer"},
+    "2": {"map": "data/maps/2.json", "season": "summer"},
+    "3": {"map": "data/maps/3.json", "season": "autumn"},
+    "4": {"map": "data/maps/4.json", "season": "autumn"},
+    "5": {"map": "data/maps/5.json", "season": "winter"},
+    "6": {"map": "data/maps/6.json", "season": "winter"},
+    "7": {"map": "data/maps/7.json", "season": "tropic"},
 }
 
 # Energy change

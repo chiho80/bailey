@@ -1,5 +1,6 @@
 import pygame
 from scripts.utils import resize_screen, set_mute
+from scripts.constants import LEVELS
 
 
 def check_keyboard_input(game):
@@ -58,6 +59,6 @@ def check_keyboard_input(game):
                 game.level = max(game.level - 1, 0)
                 game.load_level(game.level)
             if event.key == pygame.K_8:
-                game.level = min(game.level + 1, 6)
+                game.level = min(game.level + 1, max([int(key) for key in LEVELS]))
                 game.load_level(game.level)
     return quit_game

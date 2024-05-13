@@ -18,10 +18,10 @@ NEIGHBOR_OFFSETS_TALL = NEIGHBOR_OFFSETS + [
     (0, 2),
     (1, 2),
 ]
-PHYSICS_TILES = {"grass", "ice", "autumn", "movingtile"}
+PHYSICS_TILES = {"grass", "ice", "autumn", "movingtile", "tropic"}
 REWARD_TILES = {"reward/food"}
 FINISH_TILES = {"finishline"}
-AUTOTILE_TYPES = {"grass", "ice", "autumn"}
+AUTOTILE_TYPES = {"grass", "ice", "autumn", "tropic"}
 AUTOTILE_MAP = {
     tuple(sorted([(1, 0), (0, 1)])): 0,
     tuple(sorted([(1, 0), (0, 1), (-1, 0)])): 1,

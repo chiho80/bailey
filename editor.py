@@ -13,11 +13,12 @@ RENDER_SCALE = 2
 # 4 = autumn 2
 # 5 = winter 1
 # 6 = winter 2
+# 7 = tropic 1
 
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 0
+    LEVEL = 7
 
 
 class Editor:
@@ -35,11 +36,13 @@ class Editor:
             "grass": load_images("tiles/grass"),
             "autumn": load_images("tiles/autumn"),
             "ice": load_images("tiles/ice"),
+            "tropic": load_images("tiles/tropic"),
             "finishline": load_images("tiles/finishline"),
             "movingtile": load_images("tiles/movingtile"),
             "decor/tree": load_images("tiles/decor/tree", trans_color=(253, 77, 211)),
             "decor/fence": load_images("tiles/decor/fence", trans_color=(253, 77, 211)),
             "decor/summer_tree": load_images("tiles/decor/summer_tree"),
+            "decor/tropic_tree": load_images("tiles/decor/tropic_tree"),
             "decor/firehole": load_images("tiles/decor/firehole"),
             "spawners": load_images("tiles/spawners", trans_color=(0, 0, 0)),
             "reward/food": load_images("tiles/reward/food"),

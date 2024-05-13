@@ -31,7 +31,7 @@ class Game:
         self.assets = load_asset_images()
         self.sfx = load_asset_sfx()
         self.level = first_level
-        self.season = SEASONS[str(self.level)]
+        self.season = LEVELS[str(self.level)]["season"]
         self.clouds = Clouds(self.assets["clouds"], count=8)
         self.player = Player(self, (70, 20), (12, 22))
         self.tilemap = Tilemap(self, tile_size=16)
@@ -56,7 +56,7 @@ class Game:
         # level = 0 : First level. Statusboard will display self.level+1
         # Use level = -1 for dev mode.
         self.level = first_level
-        self.season = SEASONS[str(self.level)]
+        self.season = LEVELS[str(self.level)]["season"]
         self.background = Background(
             self.display, self.assets["background"], season=self.season
         )
@@ -71,17 +71,14 @@ class Game:
         """
         # Load level map
         try:
-            if map_id == -1:
-                self.tilemap.load(f"dev_resource/maps/testmap.json")
-            else:
-                self.tilemap.load(f"data/maps/{map_id}.json")
+            self.tilemap.load(LEVELS[str(map_id)]["map"])
         except:
             # TODO can do this better
-            self.tilemap.load(f"data/maps/0.json")
+            self.tilemap.load(LEVELS["0"]["map"])
 
         # Update level and background assets
         self.level = map_id
-        self.season = SEASONS[str(self.level)]
+        self.season = LEVELS[str(map_id)]["season"]
         self.background = Background(
             self.display, self.assets["background"], season=self.season
         )
