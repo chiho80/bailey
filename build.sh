@@ -1,3 +1,4 @@
+source .venv/bin/activate
 pyinstaller main.spec
 cp -rf scripts dist/Bailey.app/Contents/Frameworks/
 cp -rf data dist/Bailey.app/Contents/Frameworks/
