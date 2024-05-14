@@ -21,7 +21,7 @@ from scripts.control import check_keyboard_input
 try:
     FIRST_LEVEL = int(sys.argv[1])
 except:
-    FIRST_LEVEL = 7
+    FIRST_LEVEL = 0
 
 # Change working directory to properly access the data/ and scripts/
 try:
