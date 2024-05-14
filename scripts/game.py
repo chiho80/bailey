@@ -4,6 +4,7 @@ from scripts.background import Background
 from scripts.constants import *
 from scripts.entities import Player, Enemy
 from scripts.tilemap import Tilemap
+
 from scripts.clouds import Clouds
 from scripts.asset import load_asset_images, load_asset_sfx, load_asset_fonts
 from scripts.utils import (
@@ -32,7 +33,8 @@ class Game:
         self.sfx = load_asset_sfx()
         self.level = first_level
         self.season = LEVELS[str(self.level)]["season"]
-        self.clouds = Clouds(self.assets["clouds"], count=8)
+        if VISUAL_EFFECT["cloud"]:
+            self.clouds = Clouds(self.assets["clouds"], count=8)
         self.player = Player(self, (70, 20), (12, 22))
         self.tilemap = Tilemap(self, tile_size=16)
         self.background = Background(
@@ -64,6 +66,12 @@ class Game:
         self.score = 0
         self.load_level(self.level)
 
+    def play_bgm(self):
+        # Background music starts.
+        pygame.mixer.music.load(MUSIC[self.season]["file"])
+        pygame.mixer.music.set_volume(MUSIC[self.season]["volume"])
+        pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
+
     def load_level(self, map_id):
         """Load level map, spawn all entites,
         and get ready to generate particles, spakrs and projectiles render ready,
@@ -76,12 +84,19 @@ class Game:
             # TODO can do this better
             self.tilemap.load(LEVELS["0"]["map"])
 
+        change_bgm = False
+        if self.season != LEVELS[str(map_id)]["season"]:
+            change_bgm = True
+
         # Update level and background assets
         self.level = map_id
         self.season = LEVELS[str(map_id)]["season"]
         self.background = Background(
             self.display, self.assets["background"], season=self.season
         )
+
+        if change_bgm:
+            self.play_bgm()
 
         # Update character asset
         if self.season == "winter":

@@ -33,7 +33,7 @@ class StatusBoard:
         x = pos[0] + 120
         draw_text(
             self.game.display,
-            f"LEVEL {self.game.level + 1}",
+            f"STAGE {self.game.level + 1}",
             self.game.font["text_size5"],
             (x, pos[1]),
             text_col=COLORS["white"],

@@ -22,41 +22,51 @@ def load_asset_images():
         "background": {
             "summer": [
                 {
-                    "image": load_image("backgrounds/background_summer.png", scale=1),
-                    "pos": (0, -999),
+                    "image": load_image("backgrounds/background_summer0.png", scale=1),
+                    "pos": (0, -60),
                     "depth": 1,
-                }
+                },
+                {
+                    "image": load_image("backgrounds/background_summer1.png", scale=1),
+                    "pos": (0, -20),
+                    "depth": 2,
+                },
+                {
+                    "image": load_image("backgrounds/background_summer2.png", scale=1),
+                    "pos": (0, -999),
+                    "depth": 3,
+                },
             ],
             "autumn": [
+                # {
+                #     "image": load_image("backgrounds/background_autumn0.png", scale=1),
+                #     "pos": (0, 50),
+                #     "depth": 1,
+                # },
                 {
                     "image": load_image("backgrounds/background_autumn0.png", scale=1),
-                    "pos": (0, 50),
+                    "pos": (0, 15),
                     "depth": 1,
                 },
-                {
-                    "image": load_image("backgrounds/background_autumn0.png", scale=1),
-                    "pos": (0, 0),
-                    "depth": 1,
-                },
+                # {
+                #     "image": load_image("backgrounds/background_autumn1.png", scale=1),
+                #     "pos": (0, -30),
+                #     "depth": 4,
+                # },
                 {
                     "image": load_image("backgrounds/background_autumn1.png", scale=1),
-                    "pos": (0, -30),
+                    "pos": (0, -15),
                     "depth": 4,
                 },
                 {
-                    "image": load_image("backgrounds/background_autumn1.png", scale=1),
-                    "pos": (-16, -999),
-                    "depth": 5,
-                },
-                {
                     "image": load_image("backgrounds/background_autumn2.png", scale=1),
-                    "pos": (0, 0),
+                    "pos": (0, -64),
                     "depth": 3,
                 },
                 {
                     "image": load_image("backgrounds/background_autumn3.png", scale=1),
                     "pos": (0, 0),
-                    "depth": 2,
+                    "depth": 5,
                 },
             ],
             "winter": [
@@ -80,12 +90,12 @@ def load_asset_images():
                 {
                     "image": load_image("backgrounds/background_tropic1.png", scale=1),
                     "pos": (0, -999),
-                    "depth": 0,
+                    "depth": 1,
                 },
                 {
                     "image": load_image("backgrounds/background_tropic0.png", scale=1),
                     "pos": (0, -999),
-                    "depth": 1,
+                    "depth": 2,
                 },
             ],
         },

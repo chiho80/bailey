@@ -482,13 +482,13 @@ class Player(PhysicsEntity):
             self.dashing = min(0, self.dashing + 1)
         if abs(self.dashing) > 50:
             # Initial 10 frames of dashing, velocity should be fast!
-            # (direction) * 6 * mulfactor.   If mulfactor is large, dash faster, and stop faster too.
+            # (direction) * mulfactor.   If mulfactor is large, dash faster and longer
             self.velocity[0] = (
-                abs(self.dashing) / self.dashing * 6 * VELOCITY["player_dash_mulfactor"]
+                abs(self.dashing) / self.dashing * VELOCITY["player_dash_mulfactor"]
             )
             if abs(self.dashing) == 51:
                 # Remainder of the frames of the dashing animation, velocity will be diminished.
-                self.velocity[0] *= 0.1 * VELOCITY["player_dash_mulfactor"]
+                self.velocity[0] *= 0.1
 
             # Leave boosting gas behind each frame if P>0.5
             if VISUAL_EFFECT["boostgas"]:
@@ -514,13 +514,9 @@ class Player(PhysicsEntity):
         # If the action taken was the jump from wall during wall sliding,
         # bring it linearly toward zero to avoid infinite traveling on x axis.
         if self.velocity[0] > 0:
-            self.velocity[0] = max(
-                self.velocity[0] - 0.1 * VELOCITY["player_jump_from_wall_mulfactor"], 0
-            )
+            self.velocity[0] = max(self.velocity[0] - 0.1, 0)
         else:
-            self.velocity[0] = min(
-                self.velocity[0] + 0.1 * VELOCITY["player_jump_from_wall_mulfactor"], 0
-            )
+            self.velocity[0] = min(self.velocity[0] + 0.1, 0)
 
     def render(self, surf, offset=(0, 0)):
         # Use this to hide the palyer for the first 10 frames
@@ -541,19 +537,19 @@ class Player(PhysicsEntity):
                 # If player was sliding at the left wall,
                 # this jump should have direction of velocity toward right side.
                 # Put y velocity a bit smaller than normal jump.
-                self.velocity[0] = 3.5 * VELOCITY["player_jump_from_wall_mulfactor"]
-                self.velocity[1] = -2.5 * VELOCITY["player_jump_from_wall_mulfactor"]
+                self.velocity[0] = 3.5
+                self.velocity[1] = -2.5
                 self.air_time = 5
                 self.jumps = max(0, self.jumps - 1)
                 return True
             elif (not self.flip) and self.last_movement[0] > 0:
-                self.velocity[0] = -3.5 * VELOCITY["player_jump_from_wall_mulfactor"]
-                self.velocity[1] = -2.5 * VELOCITY["player_jump_from_wall_mulfactor"]
+                self.velocity[0] = -3.5
+                self.velocity[1] = -2.5
                 self.air_time = 5
                 self.jumps = max(0, self.jumps - 1)
                 return True
         if self.jumps:
-            self.velocity[1] = -3.2 * VELOCITY["player_jump_from_wall_mulfactor"]
+            self.velocity[1] = -3.2
             self.jumps -= 1
             self.air_time = 5
             return True

@@ -37,8 +37,8 @@ If ```[level]``` is not provided, level 0 (the first stage) will be open.
 ## Copyrights
 Freely download and update codes. Do not push the changes. Other resources, including SFXs, music, tile & entity images, cannot be redistributed without permission of original creators.  
 * Code developed by [Bailey's Dad](https://github.com/chiho80/bailey)  
-* Tile images collected from grafxkid.itch.io  
+* Ground Tile images collected from grafxkid.itch.io  
 * Squirrel sprites based on original artworks of moose-stache.itch.io  
 * Cat sprites collected from https://craftpix.net/freebies/free-street-animal-pixel-art-asset-pack/
 * SFXs collected from pixabay.com, mixkit.co  
-* Music from #uppbeat (Free For Creators!) https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio  
+* Background music from PlayOnLoop.com Licensed under Creative Commons by Attribution 4.0

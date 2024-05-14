@@ -6,7 +6,7 @@ FIRST_LIVES = 4
 TIME_LIMIT = 200000  # ms
 
 # Camera tracking speed. The smaller the faster.
-CAMERA_SPEED = 30
+CAMERA_SPEED = 10
 
 # Frame rate - lower the better performance, higher for smoother motion
 FRAME_RATE = 60
@@ -21,9 +21,10 @@ VELOCITY = {
     "enemy_x_delta/squarrel1": 0.5,
     "enemy_x_delta/squarrel2": 0.6,
     "enemy_x_delta/cat": 2,
+    "player_x_delta_walk": 1,
+    "player_x_delta_run": 2,
     "player_slidedown_max": 0.5,
-    "player_dash_mulfactor": 1,
-    "player_jump_from_wall_mulfactor": 1,
+    "player_dash_mulfactor": 6,  # If mulfactor is large, dash faster, and longer
 }
 
 # If air_time is larger, player will die
@@ -59,6 +60,14 @@ LEVELS = {
     "7": {"map": "data/maps/7.json", "season": "tropic"},
 }
 
+# Music files for each season
+MUSIC = {
+    "summer": {"file": "data/music/POL-silly-encounter-short.wav", "volume": 0.5},
+    "autumn": {"file": "data/music/POL-follow-me-short.wav", "volume": 0.5},
+    "winter": {"file": "data/music/POL-smiley-island-short.wav", "volume": 0.5},
+    "tropic": {"file": "data/music/POL-a-sinister-puzzle-short.wav", "volume": 0.5},
+}
+
 # Energy change
 ENERGY = {
     "squarrel1": -0.4,
@@ -73,22 +82,22 @@ ENERGY = {
 # Score change
 SCORE = {"squarrel1": 30, "squarrel2": 50, "cat": 70, "fruit": 5}
 
-
 # Colors
 COLORS = {
     "black": (0, 0, 0),
     "white": (255, 255, 255),
     "red": (255, 0, 0),
     "yellow": (255, 255, 0),
-    "skyblue": (14, 219, 248),
+    "summer": (14, 219, 248),
+    "autumn": (177, 91, 120),
+    "tropic": (14, 219, 248),
 }
-
 
 # Volume setting
 VOLUME = {
     "jump": 0.6,
     "dash": 0.15,
-    "shoot": 0.3,
+    "shoot": 0.15,
     "score": 0.3,
     "levelclear": 2,
     "dead": 0.5,
@@ -96,20 +105,17 @@ VOLUME = {
     "hit": 0.3,
 }
 
-
 # Visual effects.
 VISUAL_EFFECT = {
     "leaf": True,
-    "cloud": True,
+    "cloud": False,
     "boostgas": True,
     "hit": True,
     "spark": True,
 }
 
-
 # Physics check down below (number of pixels) - must be larger than the tallest entity's height
 PHYSICS_CHECK_PIXELS_DOWN_BELOW = 25
-
 
 # Fireswing length (number of fireballs)
 FIRESWING_LENGTH = 8

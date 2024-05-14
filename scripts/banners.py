@@ -45,7 +45,7 @@ def display_intro(game):
     )
     (_, y) = draw_text(
         game.display,
-        "Tile images from grafxkid.itch.io",
+        "Ground Tile images from grafxkid.itch.io",
         game.font["text_size5"],
         (
             width / 2,
@@ -81,7 +81,7 @@ def display_intro(game):
     )
     (_, y) = draw_text(
         game.display,
-        "Music from #uppbeat (FREE FOR CREATORS!)",
+        "Background music from PlayOnLoop.com",
         game.font["text_size5"],
         (
             width / 2,
@@ -93,7 +93,7 @@ def display_intro(game):
     )
     draw_text(
         game.display,
-        "https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio",
+        "Music Licensed under Creative Commons by Attribution 4.0",
         game.font["text_size5"],
         (
             width / 2,
@@ -299,7 +299,7 @@ def display_level_cleared(game):
     height = game.display.get_height()
     draw_text(
         game.display,
-        "LEVEL CLEARED",
+        "STAGE CLEARED",
         game.font["text_size8"],
         (
             width / 2,
@@ -307,10 +307,11 @@ def display_level_cleared(game):
         ),
         text_col=COLORS["white"],
         align=("center", "top"),
+        border_col=COLORS["black"],
     )
     draw_text(
         game.display,
-        "MOVING TO THE NEXT LEVEL",
+        "MOVING TO THE NEXT STAGE",
         game.font["text_size8"],
         (
             width / 2,
@@ -318,4 +319,5 @@ def display_level_cleared(game):
         ),
         text_col=COLORS["white"],
         align=("center", "top"),
+        border_col=COLORS["black"],
     )

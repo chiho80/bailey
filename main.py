@@ -44,11 +44,7 @@ async def main():
     game = Game(FIRST_LEVEL)
     quit_game = False
     game.reset_game(FIRST_LEVEL)
-
-    # Background music starts.
-    pygame.mixer.music.load("data/music/bgm.wav")
-    pygame.mixer.music.set_volume(0.5)
-    pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
+    game.play_bgm()
 
     # Infinite game loop begins here ...
     # while 1 is faster than while True
@@ -81,16 +77,12 @@ async def main():
                 sys.exit()
 
         # Cover screen with the default background color
-        # Black if not started.
-        if game.is_game_started:
-            game.display.fill(COLORS["skyblue"])
-        else:
-            game.display.fill(COLORS["black"])
+        if game.season in COLORS:
+            game.display.fill(COLORS[game.season])
 
         # Render background
-        if game.is_game_started:
-            game.background.update(game.display, game.movement)
-            game.background.render(game.display)
+        game.background.update(game.display, game.movement)
+        game.background.render(game.display)
 
         # Shake if needed
         game.screenshake = max(0, game.screenshake - 1)
@@ -104,7 +96,8 @@ async def main():
             if game.transition > 40:
                 game.level = min(
                     game.level + 1,
-                    len([x for x in os.listdir("data/maps") if x != ".DS_Store"]) - 1,
+                    len([x for x in os.listdir("data/maps") if x.endswith(".json")])
+                    - 1,
                 )
                 game.load_level(game.level)
         if game.transition < 0:
@@ -125,13 +118,13 @@ async def main():
         game.scroll[0] += (
             game.player.rect().centerx
             - game.display.get_width() / 2
-            + 50  # Add some offset
+            + 100  # Add some offset
             - game.scroll[0]
         ) / CAMERA_SPEED
         game.scroll[1] += (
             game.player.rect().centery
             - game.display.get_height() / 2
-            + 20  # Add some offset
+            - 20  # Add some offset
             - game.scroll[1]
         ) / CAMERA_SPEED
         # To avoid screen ziggling, take integer of scroll
@@ -210,13 +203,12 @@ async def main():
                     )
 
         if game.is_game_started:
-            # Render cloud.  summer only.
-            if game.season == "summer" and VISUAL_EFFECT["cloud"]:
+            # Render cloud.
+            if VISUAL_EFFECT["cloud"]:
                 game.clouds.update()
                 game.clouds.render(game.display, offset=render_scroll)
 
             # Render map
-
             game.tilemap.render(game.display, offset=render_scroll)
 
             # Render enemies
@@ -236,7 +228,11 @@ async def main():
                     game.tilemap,
                     (
                         (game.movement[1] - game.movement[0])
-                        * (2 if game.running else 1),
+                        * (
+                            VELOCITY["player_x_delta_run"]
+                            if game.running
+                            else VELOCITY["player_x_delta_walk"]
+                        ),
                         0,
                     ),
                 )
