@@ -132,6 +132,9 @@ def load_asset_images():
         "squarrel1/run": Animation(load_images("entities/squarrel1/run"), img_dur=4),
         "squarrel2/idle": Animation(load_images("entities/squarrel2/idle"), img_dur=6),
         "squarrel2/run": Animation(load_images("entities/squarrel2/run"), img_dur=4),
+        "cat/idle": Animation(load_images("entities/cat/idle"), img_dur=6),
+        "cat/run": Animation(load_images("entities/cat/run"), img_dur=4),
+        "cat/attack": Animation(load_images("entities/cat/attack"), img_dur=4),
         "particle/leaf": Animation(
             load_images("particles/leaf", trans_color=(0, 0, 0)),
             img_dur=20,

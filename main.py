@@ -21,7 +21,7 @@ from scripts.control import check_keyboard_input
 try:
     FIRST_LEVEL = int(sys.argv[1])
 except:
-    FIRST_LEVEL = 0
+    FIRST_LEVEL = 7
 
 # Change working directory to properly access the data/ and scripts/
 try:
@@ -170,8 +170,8 @@ async def main():
                     * 0.001
                     * (-1 if random.random() > 0.5 else 1)
                 )
-                # Length of fireswing = 7 (swing = strend of 7 balls)
-                for l in range(7):
+                # Length of fireswing
+                for l in range(FIRESWING_LENGTH):
                     pos = (rect.centerx, rect.centery)
                     game.fireswings.append(
                         Particle(
@@ -180,7 +180,7 @@ async def main():
                             pos,
                             angular_motion_velocity=velocity,
                             angular_motion_center=pos,
-                            angular_motion_offset=l * 7,
+                            angular_motion_offset=l * FIRESWING_UNIT_LENGTH,
                             angular_motion_initial_theta=intial_theta,
                             frame=0,
                             freefalling=False,
@@ -209,44 +209,46 @@ async def main():
                         )
                     )
 
-        # Render cloud.  summer only.
-        if game.season == "summer" and VISUAL_EFFECT["cloud"] and game.is_game_started:
-            game.clouds.update()
-            game.clouds.render(game.display, offset=render_scroll)
-
-        # Render map
         if game.is_game_started:
+            # Render cloud.  summer only.
+            if game.season == "summer" and VISUAL_EFFECT["cloud"]:
+                game.clouds.update()
+                game.clouds.render(game.display, offset=render_scroll)
+
+            # Render map
+
             game.tilemap.render(game.display, offset=render_scroll)
 
-        # Render enemies
-        for enemy in game.enemies.copy():
-            kill = enemy.update(game.tilemap, (0, 0))
-            enemy.render(game.display, offset=render_scroll)
-            # If enemy is killed by player by dashing ... remove that enemy
-            if kill:
-                game.enemies.remove(enemy)
+            # Render enemies
+            for enemy in game.enemies.copy():
+                kill = enemy.update(game.tilemap, (0, 0))
+                enemy.render(game.display, offset=render_scroll)
+                # If enemy is killed by player by dashing ... remove that enemy
+                if kill:
+                    game.enemies.remove(enemy)
 
-        # Player can move around only when it's not died.
-        # When died, player image won't be rendered.
-        if not game.dead and game.is_game_started:
-            # Update and render the player
-            # If shift key is pressed (game.running = True), run!
-            game.player.update(
-                game.tilemap,
-                (
-                    (game.movement[1] - game.movement[0]) * (2 if game.running else 1),
-                    0,
-                ),
-            )
-            # During demaging (energy is decreasing, blink player)
-            if game.player.blink:
-                game.player.blink += 1
-                if int(game.time_remain / 50) % 2 == 1:
+            # Player can move around only when it's not died.
+            # When died, player image won't be rendered.
+            if not game.dead:
+                # Update and render the player
+                # If shift key is pressed (game.running = True), run!
+                game.player.update(
+                    game.tilemap,
+                    (
+                        (game.movement[1] - game.movement[0])
+                        * (2 if game.running else 1),
+                        0,
+                    ),
+                )
+                # During demaging (energy is decreasing, blink player)
+                if game.player.blink:
+                    game.player.blink += 1
+                    if int(game.time_remain / 50) % 2 == 1:
+                        game.player.render(game.display, offset=render_scroll)
+                    if game.player.blink > 60:
+                        game.player.blink = 0
+                else:
                     game.player.render(game.display, offset=render_scroll)
-                if game.player.blink > 60:
-                    game.player.blink = 0
-            else:
-                game.player.render(game.display, offset=render_scroll)
 
         # Render projectiles  [[x, y], direction, timer]
         for projectile in game.projectiles.copy():

@@ -18,7 +18,9 @@ FIREBALL_PROB = 0.005
 VELOCITY = {
     "entity_falling_max": 7,
     "entity_falling_delta": 0.1,
-    "enemy_x_delta": 0.5,
+    "enemy_x_delta/squarrel1": 0.5,
+    "enemy_x_delta/squarrel2": 0.6,
+    "enemy_x_delta/cat": 2,
     "player_slidedown_max": 0.5,
     "player_dash_mulfactor": 1,
     "player_jump_from_wall_mulfactor": 1,
@@ -61,6 +63,7 @@ LEVELS = {
 ENERGY = {
     "squarrel1": -0.4,
     "squarrel2": -0.6,
+    "cat": -0.8,
     "projectile": -5,
     "fireball": -3,
     "fruit": 1,
@@ -68,7 +71,7 @@ ENERGY = {
 }
 
 # Score change
-SCORE = {"squarrel1": 30, "squarrel2": 50, "fruit": 5}
+SCORE = {"squarrel1": 30, "squarrel2": 50, "cat": 70, "fruit": 5}
 
 
 # Colors
@@ -102,3 +105,14 @@ VISUAL_EFFECT = {
     "hit": True,
     "spark": True,
 }
+
+
+# Physics check down below (number of pixels) - must be larger than the tallest entity's height
+PHYSICS_CHECK_PIXELS_DOWN_BELOW = 25
+
+
+# Fireswing length (number of fireballs)
+FIRESWING_LENGTH = 8
+
+# Fireswing unit length (ball center to ball center)
+FIRESWING_UNIT_LENGTH = 6

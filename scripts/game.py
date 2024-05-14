@@ -113,19 +113,24 @@ class Game:
         # Create (spawn) entities (player and enemy) at spawners
         self.enemies = []
         for spawner in self.tilemap.extract(
-            [("spawners", 0), ("spawners", 1), ("spawners", 2)]
+            [("spawners", 0), ("spawners", 1), ("spawners", 2), ("spawners", 3)]
         ):
             if spawner["variant"] == 0:
-                # Spawn player. Predefined position (70, 20) will be ignored.
+                # Spawn player. Predefined position for player (70, 20) will be ignored.
                 self.player.pos = spawner["pos"]
             else:
                 # Spawn enemy
                 if spawner["variant"] == 1:
                     enemy_key = "squarrel1"
+                    size = (20, 18)
                 if spawner["variant"] == 2:
                     enemy_key = "squarrel2"
+                    size = (20, 18)
+                if spawner["variant"] == 3:
+                    enemy_key = "cat"
+                    size = (32, 24)
                 self.enemies.append(
-                    Enemy(self, spawner["pos"], (20, 18), enemy_key=enemy_key)
+                    Enemy(self, spawner["pos"], size, enemy_key=enemy_key)
                 )
 
         self.projectiles = []  # Collections for projectiles

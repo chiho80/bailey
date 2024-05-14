@@ -11,6 +11,7 @@ from scripts.constants import (
     VISUAL_EFFECT,
     VELOCITY,
     MAX_AIR_TIME_TO_DEAD,
+    PHYSICS_CHECK_PIXELS_DOWN_BELOW,
 )
 
 
@@ -167,10 +168,13 @@ class Enemy(PhysicsEntity):
 
     def update(self, tilemap, movement=(0, 0)):
         if self.walking:
-            # Check tile in front (7 or -7 pixels) and down below (23 pixels)
+            # Check tile in front (7 or -7 pixels) and down below (25 pixels)
             # Careful to use numbers other than 7. Entity may keep flipping back and forth.
             if tilemap.solid_check(
-                (self.rect().centerx + (-7 if self.flip else 7), self.pos[1] + 23)
+                (
+                    self.rect().centerx + (-7 if self.flip else 7),
+                    self.pos[1] + PHYSICS_CHECK_PIXELS_DOWN_BELOW,
+                )
             ):
                 # Entity is on the solid tile, and position to move is also solid.
                 if self.collisions["right"] or self.collisions["left"]:
@@ -181,9 +185,9 @@ class Enemy(PhysicsEntity):
                     # TODO is this equation correct???
                     movement = (
                         (
-                            movement[0] - VELOCITY["enemy_x_delta"]
+                            movement[0] - VELOCITY[f"enemy_x_delta/{self.type}"]
                             if self.flip
-                            else VELOCITY["enemy_x_delta"]
+                            else VELOCITY[f"enemy_x_delta/{self.type}"]
                         ),
                         movement[1],
                     )
@@ -192,54 +196,64 @@ class Enemy(PhysicsEntity):
                 self.flip = not self.flip
             self.walking = max(0, self.walking - 1)
 
+            # Only for squarrels.
             # Spawn projectile
             # When enemy is not walking,
             # shot or not depending on the distance between enemy and player
             # Also, spawn only if the game is ongoing.
-            if not self.walking and self.game.is_game_started:
-                # Shot if y distance is less than 16 pixels
-                dis = (
-                    self.game.player.pos[0] - self.pos[0],
-                    self.game.player.pos[1] - self.pos[1],
-                )
-                if abs(dis[1]) < 16:
-                    # If player is looking left, and is left to the enemy, shot!
-                    if self.flip and dis[0] < 0:
-                        self.game.sfx["shoot"].play()
-                        self.game.projectiles.append(
-                            [[self.rect().centerx - 7, self.rect().centery], -1.5, 0]
-                        )
-                        for _ in range(4 * VISUAL_EFFECT["spark"]):
-                            # Genenrate (spawn) the spark for the latest projectile
-                            self.game.sparks.append(
-                                Spark(
-                                    self.game.projectiles[-1][0],
-                                    random.random() - 0.5 + math.pi,
-                                    2 + random.random(),
-                                    size=(1, 2),
-                                )
+            if self.type in ["squarrel1", "squarrel2"]:
+                if not self.walking and self.game.is_game_started:
+                    # Shot if y distance is less than 16 pixels
+                    dis = (
+                        self.game.player.pos[0] - self.pos[0],
+                        self.game.player.pos[1] - self.pos[1],
+                    )
+                    if abs(dis[1]) < 16:
+                        # If player is looking left, and is left to the enemy, shot!
+                        if self.flip and dis[0] < 0:
+                            self.game.sfx["shoot"].play()
+                            self.game.projectiles.append(
+                                [
+                                    [self.rect().centerx - 7, self.rect().centery],
+                                    -1.5,
+                                    0,
+                                ]
                             )
+                            for _ in range(4 * VISUAL_EFFECT["spark"]):
+                                # Genenrate (spawn) the spark for the latest projectile
+                                self.game.sparks.append(
+                                    Spark(
+                                        self.game.projectiles[-1][0],
+                                        random.random() - 0.5 + math.pi,
+                                        2 + random.random(),
+                                        size=(1, 2),
+                                    )
+                                )
 
-                    # If player is looking right, and is right to the enemy, shot!
-                    if not self.flip and dis[0] > 0:
-                        self.game.sfx["shoot"].play()
-                        self.game.projectiles.append(
-                            [[self.rect().centerx + 7, self.rect().centery], 1.5, 0]
-                        )
-                        for _ in range(4 * VISUAL_EFFECT["spark"]):
-                            # Genenrate (spawn) the spark for the latest projectile
-                            self.game.sparks.append(
-                                Spark(
-                                    self.game.projectiles[-1][0],
-                                    random.random() - 0.5,
-                                    2 + random.random(),
-                                    size=(1, 2),
-                                )
+                        # If player is looking right, and is right to the enemy, shot!
+                        if not self.flip and dis[0] > 0:
+                            self.game.sfx["shoot"].play()
+                            self.game.projectiles.append(
+                                [[self.rect().centerx + 7, self.rect().centery], 1.5, 0]
                             )
+                            for _ in range(4 * VISUAL_EFFECT["spark"]):
+                                # Genenrate (spawn) the spark for the latest projectile
+                                self.game.sparks.append(
+                                    Spark(
+                                        self.game.projectiles[-1][0],
+                                        random.random() - 0.5,
+                                        2 + random.random(),
+                                        size=(1, 2),
+                                    )
+                                )
 
         elif random.random() < 0.01:
             # 1% chance at each frame, can be triggered to walk
-            self.walking = random.randint(30, 120)
+            if self.type in ["squarrel1", "squarrel2"]:
+                self.walking = random.randint(30, 120)
+            else:
+                # cat
+                self.walking = random.randint(60, 180)
 
         super().update(tilemap, movement=movement)
 
