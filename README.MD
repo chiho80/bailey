@@ -39,5 +39,6 @@ Freely download and update codes. Do not push the changes. Other resources, incl
 * Code developed by [Bailey's Dad](https://github.com/chiho80/bailey)  
 * Tile images collected from grafxkid.itch.io  
 * Squirrel sprites based on original artworks of moose-stache.itch.io  
+* Cat sprites collected from https://craftpix.net/freebies/free-street-animal-pixel-art-asset-pack/
 * SFXs collected from pixabay.com, mixkit.co  
 * Music from #uppbeat (Free For Creators!) https://uppbeat.io/t/giulio-fazio/8bit-canon 8bit Canon by Guilio Fazio  

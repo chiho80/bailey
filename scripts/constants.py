@@ -12,7 +12,7 @@ CAMERA_SPEED = 30
 FRAME_RATE = 60
 
 # Fireball spawning rate. Increase for more fireballs.
-FIREBALL_PROB = 0.005
+FIREBALL_PROB = 0.002
 
 # Velocity of objcets
 VELOCITY = {

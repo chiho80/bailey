@@ -57,7 +57,7 @@ def display_intro(game):
     )
     (_, y) = draw_text(
         game.display,
-        "Original squirrel sprites from moose-stache.itch.io",
+        "Original squirrel sprites from moose-stache.itch.io, cat sprites from craftix.net",
         game.font["text_size5"],
         (
             width / 2,
