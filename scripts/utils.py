@@ -33,7 +33,7 @@ def resize_screen(game, step):
         ):
             break
 
-    if game.display_sizes[game.display_size_id] == desktop_size:
+    if game.display_sizes[game.display_size_id][0] == desktop_size[0]:
         # Full screen
         game.screen = pygame.display.set_mode(
             game.display_sizes[game.display_size_id],

@@ -23,7 +23,7 @@ class Game:
         self.display_size_id = 0
         resize_screen(self, 0)
         self.display = pygame.Surface(
-            self.display_sizes[7],  # 7 is (512,288)). Fix this!! Do not change!!
+            self.display_sizes[8],  # 8 is (512,288)). Fix this!! Do not change!!
             pygame.SRCALPHA,
         )
         self.clock = pygame.time.Clock()

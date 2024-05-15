@@ -31,11 +31,12 @@ VELOCITY = {
 MAX_AIR_TIME_TO_DEAD = 140
 
 # Available display sizes. Keep every resolutions 16:9 ratio.
-# Make sure (512, 288) is always at 8th. (array index = 7)
+# Make sure (512, 288) is always at 9th. (array index = 8)
 DISPLAY_SIZE_OPTIONS = [
     (1536, 864),
     (1600, 900),
     (2048, 1152),
+    (2056, 1156),  # New MacBook Pro =  (2056, 1329)
     (2560, 1440),
     (2880, 1620),
     (3200, 1800),
@@ -99,7 +100,7 @@ VOLUME = {
     "dash": 0.15,
     "shoot": 0.15,
     "score": 0.3,
-    "levelclear": 2,
+    "levelclear": 1,
     "dead": 0.5,
     "fireball": 1,
     "hit": 0.3,
