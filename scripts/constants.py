@@ -1,6 +1,6 @@
 # The first lives
 # If it's 4, a very first player + 3 more lives, total 4. 3 heads will be displayed
-FIRST_LIVES = 4
+FIRST_LIVES = 1
 
 # Max time for each level
 TIME_LIMIT = 120000  # ms
