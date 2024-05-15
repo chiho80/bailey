@@ -30,7 +30,11 @@ except:
     os.chdir(os.getcwd())
 
 # Set app icon
-pygame.display.set_icon(pygame.image.load("data/images/ico/macos_512x512x32.png"))
+if os.name == "nt":
+    # Works for MacOS
+    pygame.display.set_icon(pygame.image.load("data/images/ico/favicon.ico"))
+else:
+    pygame.display.set_icon(pygame.image.load("data/images/ico/macos_512x512x32.png"))
 
 
 async def main():
