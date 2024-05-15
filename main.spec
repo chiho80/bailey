@@ -32,7 +32,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['data/images/ico/macos_1024x1024x32.png'],
+    icon=['data/images/ico/favicon.ico'],
 )
 coll = COLLECT(
     exe,
