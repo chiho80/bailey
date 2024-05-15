@@ -72,6 +72,7 @@ async def main():
             if not quit_game:
                 game.reset_game(FIRST_LEVEL)
                 game.load_level(game.level)
+                game.sfx["levelclear"].play()
             else:
                 pygame.quit()
                 sys.exit()
@@ -403,6 +404,7 @@ async def main():
         # If lives is zero, display game over screen
         if not game.lives:
             display_gameover(game)
+            game.play_bgm(music_key="gameover")
 
         # If the game is not started, show intro screen
         if not game.is_game_started:

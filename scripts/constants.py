@@ -3,7 +3,7 @@
 FIRST_LIVES = 4
 
 # Max time for each level
-TIME_LIMIT = 150000  # ms
+TIME_LIMIT = 120000  # ms
 
 # Additional time to be added when player died
 EXTRA_TIME_AFTER_DEAD = 15000  # ms
@@ -70,6 +70,7 @@ MUSIC = {
     "autumn": {"file": "data/music/POL-follow-me-short.wav", "volume": 0.5},
     "winter": {"file": "data/music/POL-smiley-island-short.wav", "volume": 0.5},
     "tropic": {"file": "data/music/POL-a-sinister-puzzle-short.wav", "volume": 0.5},
+    "gameover": {"file": "data/music/POL-foggy-forest-short.wav", "volume": 0.5},
 }
 
 # Energy change
@@ -103,7 +104,7 @@ VOLUME = {
     "dash": 0.15,
     "shoot": 0.15,
     "score": 0.3,
-    "levelclear": 1,
+    "levelclear": 0.4,
     "dead": 0.5,
     "fireball": 1,
     "hit": 0.3,

@@ -49,6 +49,7 @@ class Game:
         self.statusboard = StatusBoard(self)
         self.is_game_started = False  # When the game app is loaded, it's not started.
         self.mute = False
+        self.music_key = None  # summer? winter? gameover?
 
     def reset_game(self, first_level):
         """Should be called when the new game is starting.
@@ -66,11 +67,14 @@ class Game:
         self.score = 0
         self.load_level(self.level)
 
-    def play_bgm(self):
-        # Background music starts.
-        pygame.mixer.music.load(MUSIC[self.season]["file"])
-        pygame.mixer.music.set_volume(MUSIC[self.season]["volume"])
-        pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
+    def play_bgm(self, music_key="summer"):
+        # Background music starts if the music being played is different from requested music
+        if self.music_key != music_key:
+            pygame.mixer.music.load(MUSIC[music_key]["file"])
+            pygame.mixer.music.set_volume(MUSIC[music_key]["volume"])
+            pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
+            # Update music_key with curent music
+            self.music_key = music_key
 
     def load_level(self, map_id, passed_checkpoint_pos=None, reset_time=True):
         """Load level map, spawn all entites,
@@ -88,10 +92,6 @@ class Game:
             # TODO can do this better
             self.tilemap.load(LEVELS["0"]["map"])
 
-        change_bgm = False
-        if self.season != LEVELS[str(map_id)]["season"]:
-            change_bgm = True
-
         # Update level and background assets
         self.level = map_id
         self.season = LEVELS[str(map_id)]["season"]
@@ -99,8 +99,8 @@ class Game:
             self.display, self.assets["background"], season=self.season
         )
 
-        if change_bgm:
-            self.play_bgm()
+        # If the music has been already playing, it won't replayed.
+        self.play_bgm(music_key=self.season)
 
         # Update character asset
         if self.season == "winter":

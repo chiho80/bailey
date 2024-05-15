@@ -108,35 +108,57 @@ def display_intro(game):
 def display_gameover(game):
     width = game.display.get_width()
     height = game.display.get_height()
-    draw_text(
+    (_, y) = draw_text(
         game.display,
         "GAME OVER",
         game.font["text_size22"],
         (
             width / 2,
-            height / 2 - 10,
+            height / 2 - 30,
         ),
         text_col=COLORS["white"],
         align=("center", "middle"),
     )
-    draw_text(
+    (_, y) = draw_text(
+        game.display,
+        f"SCORE {game.score}",
+        game.font["text_size8"],
+        (
+            width / 2,
+            y + 45,
+        ),
+        text_col=COLORS["white"],
+        align=("center", "middle"),
+    )
+    (_, y) = draw_text(
+        game.display,
+        f"STAGE REACHED {game.level+1}",
+        game.font["text_size8"],
+        (
+            width / 2,
+            y + 17,
+        ),
+        text_col=COLORS["white"],
+        align=("center", "middle"),
+    )
+    (_, y) = draw_text(
         game.display,
         "PRESS Y TO START A NEW GAME",
         game.font["text_size8"],
         (
             width / 2,
-            height / 2 + 30,
+            y + 30,
         ),
         text_col=COLORS["white"],
         align=("center", "middle"),
     )
-    draw_text(
+    (_, y) = draw_text(
         game.display,
         "OR PRESS N/Q TO QUIT",
         game.font["text_size8"],
         (
             width / 2,
-            height / 2 + 45,
+            y + 17,
         ),
         text_col=COLORS["white"],
         align=("center", "middle"),

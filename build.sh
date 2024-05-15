@@ -1,5 +1,5 @@
 source .venv/bin/activate
-pyinstaller main.spec
+pyinstaller -y main.spec
 rm -rf scripts/__pycache__
 cp -rf scripts dist/Bailey.app/Contents/Frameworks/
 cp -rf data dist/Bailey.app/Contents/Frameworks/
