@@ -29,6 +29,9 @@ pip install Pillow
 ```   
 Run ```build_Mac.sh``` to create an app for MacOS ```bailey.app``` under dist folder. 
 Run ```build_Win.bat``` to create an app for MS Windows ```bailey.exe``` under dist folder. 
+The built-in security monitoring tools of MS Windows may block running the pyinstaller during building. 
+If that is happening, temporarely disable the real-time monitoring them enable after the building is finished.
+If the ```build_Win.bat``` is not running without clear reason, execute the commands in the bat file, one by one.
 
 ## Run game
 ```python main.py [level]```  
