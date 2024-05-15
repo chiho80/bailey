@@ -12,11 +12,14 @@ pip install pygbag
 
 ### Windows
 ```
-py -m venv .venv
+python -m venv .venv
 .venv\Scripts\activate
 pip install pygame==2.5.2 
 pip install pygbag
-```
+```   
+When facing the error related the security policy during activating the virtual environment, 
+run the Windows PowerShell with administration privilege, then execute this ```Set-ExecutionPolicy Unrestricted``` 
+on the shell, then select Y on the question. Now you will be able to activate the virtual environment.
 
 ## Distribute the game
 The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a good option to make executables.   
@@ -24,7 +27,8 @@ The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a goo
 pip install pyinstaller
 pip install Pillow
 ```   
-Use build.sh to create an app for MacOS ```bailey.app``` under dist folder. App for MS Windows is not ready yet.
+Run ```build_Mac.sh``` to create an app for MacOS ```bailey.app``` under dist folder. 
+Run ```build_Win.bat``` to create an app for MS Windows ```bailey.exe``` under dist folder. 
 
 ## Run game
 ```python main.py [level]```  
