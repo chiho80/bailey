@@ -170,6 +170,7 @@ def load_asset_images():
             load_images("particles/fireswing"),
             img_dur=3,
         ),
+        "checkpoint": load_images("tiles/checkpoint"),
     }
     return assets
 

@@ -49,7 +49,7 @@ BASE_IMG_PATH = "data/images/"
 
 # Season for each level
 LEVELS = {
-    "-1": {"map": "data/maps/testmap.json", "season": "autumn"},
+    "-1": {"map": "../dev_resource/maps/testmap.json", "season": "autumn"},
     "0": {"map": "data/maps/0.json", "season": "summer"},
     "1": {"map": "data/maps/1.json", "season": "summer"},
     "2": {"map": "data/maps/2.json", "season": "summer"},

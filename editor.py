@@ -18,7 +18,7 @@ RENDER_SCALE = 2
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 0
+    LEVEL = 7
 
 
 class Editor:
@@ -47,6 +47,7 @@ class Editor:
             "decor/fireswing": load_images("tiles/decor/fireswing"),
             "spawners": load_images("tiles/spawners", trans_color=(0, 0, 0)),
             "reward/food": load_images("tiles/reward/food"),
+            "checkpoint": load_images("tiles/checkpoint"),
         }
 
         self.movement = [False, False, False, False]
@@ -56,7 +57,7 @@ class Editor:
         # Load existing map
         try:
             if LEVEL == -1:
-                self.tilemap.load(f"dev_resource/maps/testmap.json")
+                self.tilemap.load(f"../dev_resource/maps/testmap.json")
             else:
                 self.tilemap.load(f"data/maps/{LEVEL}.json")
         except FileNotFoundError:
@@ -225,7 +226,7 @@ class Editor:
                         self.activate_movingground = not self.activate_movingground
                     if event.key == pygame.K_o:
                         if LEVEL == -1:
-                            self.tilemap.save(f"dev_resource/maps/testmap.json")
+                            self.tilemap.save(f"../dev_resource/maps/testmap.json")
                         else:
                             self.tilemap.save(f"data/maps/{LEVEL}.json")
                     if event.key == pygame.K_g:

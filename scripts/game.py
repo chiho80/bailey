@@ -72,10 +72,14 @@ class Game:
         pygame.mixer.music.set_volume(MUSIC[self.season]["volume"])
         pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
 
-    def load_level(self, map_id):
+    def load_level(self, map_id, passed_checkpoint_pos=None, reset_time=True):
         """Load level map, spawn all entites,
         and get ready to generate particles, spakrs and projectiles render ready,
         then set the initial camera position
+        If specific passed_checkpoint_pos is in args,
+        that will be used for the player's position
+        when the level is started.
+        passed_checkpoint_pos will be one of the checkpoint positions or None.
         """
         # Load level map
         try:
@@ -132,7 +136,10 @@ class Game:
         ):
             if spawner["variant"] == 0:
                 # Spawn player. Predefined position for player (70, 20) will be ignored.
-                self.player.pos = spawner["pos"]
+                self.player.pos = (
+                    passed_checkpoint_pos if passed_checkpoint_pos else spawner["pos"]
+                )
+                self.player.pos_at_start = spawner["pos"]
             else:
                 # Spawn enemy
                 if spawner["variant"] == 1:
@@ -148,6 +155,13 @@ class Game:
                     Enemy(self, spawner["pos"], size, enemy_key=enemy_key)
                 )
 
+        # Collect checkpoint positions
+        self.checkpoints = []
+        for checkpoint in self.tilemap.extract([("checkpoint", 0)]):
+            if checkpoint["variant"] == 0:
+                # We need only one variant (value = 0), and we only have that in the tile maps.
+                # I left this if clause for later change, which is not likely happening though...
+                self.checkpoints.append(checkpoint["pos"])
         self.projectiles = []  # Collections for projectiles
         self.fireballs = []  # Collections for fireballs
         self.fireswings = []  # Collections for fires in many fireswings
@@ -160,9 +174,10 @@ class Game:
         self.player.air_time = 0  # Necessary to avoid infinite reloading the level!
         self.player.energy = 30  # 30 is 100%
         self.player.blink = 0  # Player blinking?
-        self.time_limit = TIME_LIMIT  # ms
-        self.time_remain = self.time_limit  #  ms
-        self.time_start = pygame.time.get_ticks()  # ms
+        if reset_time:
+            self.time_limit = TIME_LIMIT  # ms
+            self.time_remain = self.time_limit  #  ms
+            self.time_start = pygame.time.get_ticks()  # ms
         self.time_paused = 0  # ms (duration of paused time)
         # To be updated when pause requested, then subtracted when resumed the game
         self.time_right_before_pause = 0

@@ -112,7 +112,12 @@ async def main():
                 game.transition = min(30, game.transition + 1)
             if game.dead > 40:
                 game.lives = max(0, game.lives - 1)
-                game.load_level(game.level)
+                # Get the closest passed checkpoint to spawn the player there.
+                game.load_level(
+                    game.level,
+                    passed_checkpoint_pos=game.player.get_spawning_position(),
+                    reset_time=False,
+                )
 
         # Move camera focusing the center of the player
         game.scroll[0] += (

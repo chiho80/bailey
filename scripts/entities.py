@@ -20,6 +20,7 @@ class PhysicsEntity:
         self.game = game
         self.type = e_type
         self.pos = list(pos)
+        self.pos_at_start = list(pos)
         self.size = size
         self.velocity = [0, 0]
         self.collisions = {"up": False, "down": False, "right": False, "left": False}
@@ -562,3 +563,19 @@ class Player(PhysicsEntity):
                 self.dashing = -60
             else:
                 self.dashing = 60
+
+    def get_spawning_position(self):
+        """Select one of the checkpoints defined in the map to
+        respawn player when died.
+        Spawning position will be selected only based on the x value"""
+        closest_passed_checkpoint_x = -999
+        checkpoint_index = -999
+        for i, checkpoint in enumerate(self.game.checkpoints):
+            if self.pos[0] >= checkpoint[0]:
+                if checkpoint[0] > closest_passed_checkpoint_x:
+                    closest_passed_checkpoint_x = checkpoint[0]
+                    checkpoint_index = i
+        if checkpoint_index != -999:
+            return self.game.checkpoints[checkpoint_index]
+        # If did not pass any checkpoint, return the original spawning position
+        # nothing (None) will be returned
