@@ -3,7 +3,10 @@
 FIRST_LIVES = 4
 
 # Max time for each level
-TIME_LIMIT = 200000  # ms
+TIME_LIMIT = 150000  # ms
+
+# Additional time to be added when player died
+EXTRA_TIME_AFTER_DEAD = 15000  # ms
 
 # Camera tracking speed. The smaller the faster.
 CAMERA_SPEED = 10
@@ -108,7 +111,7 @@ VOLUME = {
 
 # Visual effects.
 VISUAL_EFFECT = {
-    "leaf": True,
+    "leaf": False,
     "cloud": False,
     "boostgas": True,
     "hit": True,

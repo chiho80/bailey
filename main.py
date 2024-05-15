@@ -66,7 +66,7 @@ async def main():
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_y:
                             selection_made = True
-                        if event.key == pygame.K_n:
+                        if event.key == pygame.K_n or event.key == pygame.K_q:
                             quit_game = True
                             selection_made = True
             if not quit_game:
@@ -397,7 +397,7 @@ async def main():
             game.display.blit(transition_surf, (0, 0))
 
         # Display game status bar
-        if game.is_game_started:
+        if game.is_game_started and game.lives:
             game.statusboard.render(game.display, pos=(5, 5))
 
         # If lives is zero, display game over screen

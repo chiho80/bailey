@@ -174,10 +174,20 @@ class Game:
         self.player.air_time = 0  # Necessary to avoid infinite reloading the level!
         self.player.energy = 30  # 30 is 100%
         self.player.blink = 0  # Player blinking?
+
+        # (Re)set time parameters only when the level is loading with reset_time is True.
+        # (ex, it's True when fresh start of the level)
+        # If the level is loaded because the player died,
+        # give 30 more seconds for second chance.
         if reset_time:
             self.time_limit = TIME_LIMIT  # ms
             self.time_remain = self.time_limit  #  ms
             self.time_start = pygame.time.get_ticks()  # ms
+        else:
+            self.time_limit = self.time_remain + EXTRA_TIME_AFTER_DEAD  # ms
+            self.time_remain = self.time_limit  #  ms
+            self.time_start = pygame.time.get_ticks()  # ms
+
         self.time_paused = 0  # ms (duration of paused time)
         # To be updated when pause requested, then subtracted when resumed the game
         self.time_right_before_pause = 0

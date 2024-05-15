@@ -23,36 +23,32 @@ def load_asset_images():
             "summer": [
                 {
                     "image": load_image("backgrounds/background_summer0.png", scale=1),
-                    "pos": (0, -60),
+                    "pos": (
+                        0,
+                        -60,
+                    ),  # 60 pixels from bottom of screen to bg image bottom
                     "depth": 1,
                 },
                 {
                     "image": load_image("backgrounds/background_summer1.png", scale=1),
-                    "pos": (0, -20),
+                    "pos": (
+                        0,
+                        -20,
+                    ),  # 20 pixels from bottom of screen to bg image bottom
                     "depth": 2,
                 },
                 {
                     "image": load_image("backgrounds/background_summer2.png", scale=1),
-                    "pos": (0, -999),
+                    "pos": (0, -999),  # Bottom align
                     "depth": 3,
                 },
             ],
             "autumn": [
-                # {
-                #     "image": load_image("backgrounds/background_autumn0.png", scale=1),
-                #     "pos": (0, 50),
-                #     "depth": 1,
-                # },
                 {
                     "image": load_image("backgrounds/background_autumn0.png", scale=1),
-                    "pos": (0, 15),
+                    "pos": (0, 15),  # 15 pixels from top of screen to bg image top
                     "depth": 1,
                 },
-                # {
-                #     "image": load_image("backgrounds/background_autumn1.png", scale=1),
-                #     "pos": (0, -30),
-                #     "depth": 4,
-                # },
                 {
                     "image": load_image("backgrounds/background_autumn1.png", scale=1),
                     "pos": (0, -15),

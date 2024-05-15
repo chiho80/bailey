@@ -63,7 +63,10 @@ def draw_text(
     align=("left", "top"),
     antialias=False,
     border_col=None,
+    blink=(10, 0),
 ):
+    """blink = (time to show in ms, time to hide in ms)
+    Default (10, 0) = show constantly"""
     text_img = text_font.render(text, antialias, text_col)
 
     if align[0] == "center":
@@ -79,14 +82,19 @@ def draw_text(
     else:
         y = pos[1]
 
-    if border_col:
-        text_img_border = text_font.render(text, antialias, border_col)
-        surf.blit(text_img_border, (x - 1, y))
-        surf.blit(text_img_border, (x + 1, y))
-        surf.blit(text_img_border, (x, y - 1))
-        surf.blit(text_img_border, (x, y + 1))
+    total_cycle = blink[0] + blink[1]
 
-    surf.blit(text_img, (x, y))
+    if blink and pygame.time.get_ticks() % total_cycle > blink[0]:
+        pass
+    else:
+        if border_col:
+            text_img_border = text_font.render(text, antialias, border_col)
+            surf.blit(text_img_border, (x - 1, y))
+            surf.blit(text_img_border, (x + 1, y))
+            surf.blit(text_img_border, (x, y - 1))
+            surf.blit(text_img_border, (x, y + 1))
+
+        surf.blit(text_img, (x, y))
 
     # Return position for any use...
     return (x, y)

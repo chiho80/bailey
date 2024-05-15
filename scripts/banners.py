@@ -29,6 +29,7 @@ def display_intro(game):
         text_col=COLORS["white"],
         align=("center", "top"),
         border_col=COLORS["black"],
+        blink=(500, 500),
     )
     (_, y) = draw_text(
         game.display,
@@ -131,7 +132,7 @@ def display_gameover(game):
     )
     draw_text(
         game.display,
-        "OR PRESS N TO QUIT",
+        "OR PRESS N/Q TO QUIT",
         game.font["text_size8"],
         (
             width / 2,
