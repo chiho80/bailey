@@ -268,7 +268,7 @@ def display_paused(game):
     )
     (x, y) = draw_text(
         game.display,
-        "        X OR L - DASH",
+        "        X OR L - DASH AND KILL ENEMY",
         game.font["text_size8"],
         (
             x,
