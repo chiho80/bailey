@@ -51,7 +51,6 @@ class Tilemap:
         self.tile_size = tile_size
         self.tilemap = {}  # restricted by physics
         self.offgrid_tiles = []
-        self.moving_offgrid_tiles = []
         self.transport = {}
 
     def extract(self, id_pairs, keep=False, t_type=None):
@@ -61,18 +60,11 @@ class Tilemap:
         keep = False if wanted to remove after the incident
         """
         matches = []
-        if t_type == "moving_offgrid":
-            for tile in self.moving_offgrid_tiles.copy():
-                if (tile["type"], tile["variant"]) in id_pairs:
-                    matches.append(tile.copy())
-                    if not keep:
-                        self.moving_offgrid_tiles.remove(tile)
-        else:
-            for tile in self.offgrid_tiles.copy():
-                if (tile["type"], tile["variant"]) in id_pairs:
-                    matches.append(tile.copy())
-                    if not keep:
-                        self.offgrid_tiles.remove(tile)
+        for tile in self.offgrid_tiles.copy():
+            if (tile["type"], tile["variant"]) in id_pairs:
+                matches.append(tile.copy())
+                if not keep:
+                    self.offgrid_tiles.remove(tile)
 
         for loc in self.tilemap:
             tile = self.tilemap[loc]
@@ -146,7 +138,6 @@ class Tilemap:
                 "tilemap": self.tilemap,
                 "tile_size": self.tile_size,
                 "offgrid": self.offgrid_tiles,
-                "moving_offgrid": self.moving_offgrid_tiles,
             },
             f,
         )
@@ -158,7 +149,6 @@ class Tilemap:
         self.tilemap = map_data["tilemap"]
         self.tile_size = map_data["tile_size"]
         self.offgrid_tiles = map_data["offgrid"]
-        self.moving_offgrid_tiles = map_data.get("moving_offgrid", [])
 
     def solid_check(self, pos):
         """Check if pos is for solid tiles"""

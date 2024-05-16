@@ -18,7 +18,7 @@ RENDER_SCALE = 2
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 7
+    LEVEL = 6
 
 
 class Editor:
@@ -147,16 +147,6 @@ class Editor:
                     )
                     if tile_r.collidepoint(mpos):
                         self.tilemap.offgrid_tiles.remove(tile)
-                for tile in self.tilemap.moving_offgrid_tiles.copy():
-                    tile_img = self.assets[tile["type"]][tile["variant"]]
-                    tile_r = pygame.Rect(
-                        tile["pos"][0] - self.scroll[0],
-                        tile["pos"][1] - self.scroll[1],
-                        tile_img.get_width(),
-                        tile_img.get_height(),
-                    )
-                    if tile_r.collidepoint(mpos):
-                        self.tilemap.moving_offgrid_tiles.remove(tile)
 
             # Preview current tile selected at top left
             self.display.blit(current_tile_img, (5, 5))
