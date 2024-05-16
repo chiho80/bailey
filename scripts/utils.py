@@ -4,8 +4,11 @@ from scripts.constants import *
 
 
 def set_volume(assets, mute=False):
+    """Set volume of SFX and music. Mute if mute is True"""
+    # SFX volume
     for asset_key in assets:
         assets[asset_key].set_volume(0 if mute else VOLUME[asset_key])
+    # Music volume
     if mute:
         pygame.mixer.music.set_volume(0)
     else:
@@ -21,8 +24,9 @@ def set_mute(game):
 
 def resize_screen(game, step):
     """Resize the display window. Step can be any integer."""
-
-    desktop_size = pygame.display.get_desktop_sizes()[0]  # It's always a list of sizes.
+    # Get a list of full size of user's desktops.
+    # It's always a list of sizes for single or multiple desktops.
+    desktop_size = pygame.display.get_desktop_sizes()[0]
 
     while True:
         # If selected screen size is too large, this one cannot be used.
