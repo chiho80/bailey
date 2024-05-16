@@ -274,7 +274,9 @@ class Enemy(PhysicsEntity):
                     0, self.game.player.energy + ENERGY[self.type]
                 )
                 # TODO show any animation when energy is reducing?
-                # self.game.player.set_action("hit")
+                self.game.player.set_action("hit")
+
+                self.game.sfx["hit_by_enemy"].play()
             if self.game.player.energy == 0:
                 if not self.game.dead:
                     # Trigger screen shake effect
@@ -286,7 +288,7 @@ class Enemy(PhysicsEntity):
             if self.rect().colliderect(self.game.player.rect()):
                 # Trigger screen shake effect
                 self.game.screenshake = max(16, self.game.screenshake)
-                self.game.sfx["hit"].play()
+                self.game.sfx["hit_on_enemy"].play()
 
                 # Update score and spawn textmark
                 self.game.score += SCORE[self.type]

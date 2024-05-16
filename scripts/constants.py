@@ -113,7 +113,9 @@ VOLUME = {
     "levelclear": 0.4,
     "dead": 0.5,
     "fireball": 1,
-    "hit": 0.3,
+    "hit_by_fire": 0.3,
+    "hit_by_enemy": 1,
+    "hit_on_enemy": 0.3,
 }
 
 # Visual effects.

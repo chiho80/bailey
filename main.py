@@ -315,7 +315,7 @@ def main():
                     game.player.energy = max(
                         0, game.player.energy + ENERGY["projectile"]
                     )
-                    game.sfx["hit"].play()
+                    game.sfx["hit_by_fire"].play()
                     # Trigger screen shake effect
                     game.screenshake = max(16, game.screenshake)
 
@@ -362,7 +362,7 @@ def main():
                     game.player.blink += 1
                     # Decrease player energy
                     game.player.energy = max(0, game.player.energy + ENERGY["fireball"])
-                    game.sfx["hit"].play()
+                    game.sfx["hit_by_fire"].play()
                     # Trigger screen shake effect
                     game.screenshake = max(16, game.screenshake)
                     # If energy is zero, trigger death
@@ -385,7 +385,7 @@ def main():
                     game.player.energy = max(
                         0, game.player.energy + ENERGY["fireswing"]
                     )
-                    game.sfx["hit"].play()
+                    game.sfx["hit_by_fire"].play()
                     # Trigger screen shake effect
                     game.screenshake = max(16, game.screenshake)
                     # If energy is zero, trigger death
