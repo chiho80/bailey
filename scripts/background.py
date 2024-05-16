@@ -4,10 +4,10 @@ def position_initialize(pos, img_size, surf_size):
         if val >= 0:
             render_pos[i] = val
         elif val == -999:
-            # -1 is the contract for bottom (or right) aligh
+            # -999 is the contract for bottom (or right) aligh
             render_pos[i] = surf_size[i] - img_size[i]
         else:
-            # val < -1 : val is the distance from bottom (or right)
+            # val < 0 : val is the distance from bottom (or right)
             render_pos[i] = surf_size[i] - img_size[i] + val
     return render_pos
 
