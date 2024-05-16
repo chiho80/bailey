@@ -33,14 +33,23 @@ def load_asset_images():
                     "image": load_image("backgrounds/background_summer1.png", scale=1),
                     "pos": (
                         0,
-                        -20,
-                    ),  # 20 pixels from bottom of screen to bg image bottom
+                        0,
+                    ),
                     "depth": 2,
+                    "speed": [-0.2, 0],
                 },
                 {
                     "image": load_image("backgrounds/background_summer2.png", scale=1),
-                    "pos": (0, -999),  # Bottom align
+                    "pos": (
+                        0,
+                        -20,
+                    ),  # 20 pixels from bottom of screen to bg image bottom
                     "depth": 3,
+                },
+                {
+                    "image": load_image("backgrounds/background_summer3.png", scale=1),
+                    "pos": (0, -999),  # Bottom align
+                    "depth": 4,
                 },
             ],
             "autumn": [
@@ -100,6 +109,7 @@ def load_asset_images():
         "player/run": Animation(load_images("entities/player/run"), img_dur=4),
         "player/jump": Animation(load_images("entities/player/jump")),
         "player/fall": Animation(load_images("entities/player/fall")),
+        "player/hit": Animation(load_images("entities/player/hit"), img_dur=2),
         "player/random1": Animation(
             load_images("entities/player/random1"),
         ),
@@ -119,6 +129,9 @@ def load_asset_images():
         ),
         "player/winter/jump": Animation(load_images("entities/player_winter/jump")),
         "player/winter/fall": Animation(load_images("entities/player_winter/fall")),
+        "player/winter/hit": Animation(
+            load_images("entities/player_winter/hit"), img_dur=2
+        ),
         "player/winter/random1": Animation(
             load_images("entities/player_winter/random1"),
         ),

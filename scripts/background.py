@@ -16,6 +16,7 @@ class BackgroundLayer:
     def __init__(self, surf, image_dict):
         self.img = image_dict["image"]
         self.depth = image_dict["depth"]
+        self.speed = image_dict.get("speed", [0, 0])
         self.surf_size = surf.get_size()
         self.img_size = self.img.get_size()
         self.pos_original = position_initialize(
@@ -31,8 +32,10 @@ class BackgroundLayer:
         # Background y position won't be changed.
         for i in range(len(self.pos)):
             self.pos[i] = [
-                self.pos[i][0] - self.depth * 0.1 * (movement[1] - movement[0]),
-                self.pos[i][1],
+                self.pos[i][0]
+                + self.speed[0]
+                - self.depth * 0.1 * (movement[1] - movement[0]),
+                self.pos[i][1] + self.speed[1],
             ]
             if self.pos[i][0] < -self.img_size[0]:
                 self.pos[i][0] += 3 * self.img_size[0]

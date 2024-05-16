@@ -252,16 +252,17 @@ def main():
                 )
                 # During demaging (energy is decreasing, blink player)
                 if game.player.blink:
+                    game.player.set_action("hit")
                     if PLAYER_BOUNCE_BACK:
                         if game.player.flip:
                             game.player.pos = [
                                 game.player.pos[0] + (30 - game.player.blink) / 12,
-                                game.player.pos[1],
+                                game.player.pos[1] - (30 - game.player.blink) / 12,
                             ]
                         else:
                             game.player.pos = [
                                 game.player.pos[0] - (30 - game.player.blink) / 12,
-                                game.player.pos[1],
+                                game.player.pos[1] - (30 - game.player.blink) / 12,
                             ]
                     game.player.blink += 1
                     if int(game.time_remain / 50) % 2 == 1:
