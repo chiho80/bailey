@@ -53,7 +53,7 @@ class Tilemap:
         self.offgrid_tiles = []
         self.transport = {}
 
-    def extract(self, id_pairs, keep=False, t_type=None):
+    def extract(self, id_pairs, keep=False):
         """Extract tiles with id_pairs to spawn something
         id_pairs: list of tile type & variant pairs
         keep = True if want to keep staying in the game,

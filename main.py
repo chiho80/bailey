@@ -2,7 +2,6 @@ import os
 import sys
 import random
 import math
-import asyncio
 import pygame
 from scripts.constants import *
 from scripts.utils import save_score_highest
@@ -17,27 +16,28 @@ from scripts.particle import Particle
 from scripts.spark import Spark
 from scripts.control import check_keyboard_input
 
-
+# User can specify the level to start by providing an argument.
 try:
     FIRST_LEVEL = int(sys.argv[1])
 except:
     FIRST_LEVEL = 0
 
-# Change working directory to properly access the data/ and scripts/
+# Change working directory to the location where the executable is at.
+# Executable cannot find sub folders (data/ and scripts/) without doing this.
 try:
     os.chdir(sys._MEIPASS)
 except:
     os.chdir(os.getcwd())
 
-# Set app icon
+# Set app icon.
 if os.name == "nt":
-    # Works for MacOS
+    # Works for MS Windows. Only the file in extension of .ico will work.
     pygame.display.set_icon(pygame.image.load("data/images/ico/favicon.ico"))
 else:
     pygame.display.set_icon(pygame.image.load("data/images/ico/macos_512x512x32.png"))
 
 
-async def main():
+def main():
     """Main game loop happens in this async function.
     Create a game object, update every elements (player, enemy, tiles, background...),
     render them, check key controls, dead check, level check, etc ...
@@ -457,7 +457,6 @@ async def main():
 
         # Display all the objects, images, background, etc...
         pygame.display.update()
-        await asyncio.sleep(0)  # Very important, and keep it 0
         game.clock.tick(FRAME_RATE)
 
         # If paused is true, hold screen till any key pressed
@@ -475,4 +474,4 @@ async def main():
 
 
 # This is the program entry point:
-asyncio.run(main())
+main()

@@ -15,10 +15,19 @@ from scripts.utils import (
 
 class Game:
     def __init__(self, first_level):
+        """Game class initiates the game, declare global attributes related
+        to the game operation, setting up stages, play music, and reset the game"""
+        # Initiate sound mixer
         pygame.mixer.pre_init(44100, 16, 2, 4096)
+
+        # Initiate pygame, set the title to display at top bar
         pygame.init()
-        pygame.font.init()
         pygame.display.set_caption("Bailey's adventure")
+
+        # Initiate fonts
+        pygame.font.init()
+
+        # Set display
         self.display_sizes = DISPLAY_SIZE_OPTIONS
         self.display_size_id = 0
         resize_screen(self, 0)
@@ -26,30 +35,57 @@ class Game:
             self.display_sizes[8],  # 8 is (512,288)). Fix this!! Do not change!!
             pygame.SRCALPHA,
         )
+
+        # Initiate clock
         self.clock = pygame.time.Clock()
+
+        # Load assets (images, fonts)
+        self.assets = load_asset_images()
+        self.font = load_asset_fonts()
+
+        # Load sfx
+        self.sfx = load_asset_sfx()
+
+        # Set player variables
         self.movement = [False, False]
         self.running = False
-        self.assets = load_asset_images()
-        self.sfx = load_asset_sfx()
+        self.player = Player(self, (70, 20), (12, 22))
+
+        # Set level and corresponding season
         self.level = first_level
         self.season = LEVELS[str(self.level)]["season"]
+
+        # If needed, create clouds using Cloud class
         if VISUAL_EFFECT["cloud"]:
             self.clouds = Clouds(self.assets["clouds"], count=8)
-        self.player = Player(self, (70, 20), (12, 22))
+
+        # Initiate tilemap
         self.tilemap = Tilemap(self, tile_size=16)
+
+        # Initiate background
         self.background = Background(
             self.display, self.assets["background"], season=self.season
         )
-        self.screenshake = 0
-        self.font = load_asset_fonts()
 
         # Read the highest score from the file
         self.score_highest = load_score_highest("data/score_highest.dat")
 
+        # Initiate statusboard
         self.statusboard = StatusBoard(self)
-        self.is_game_started = False  # When the game app is loaded, it's not started.
+
+        # Parameter to store whether the game is started or not.
+        # When the game app is loaded, it should be False as it's not started yet.
+        self.is_game_started = False
+
+        # Set sound related parameters
         self.mute = False
-        self.music_key = None  # summer? winter? gameover?
+
+        # Key for MUSIC dict in constants.py.
+        # For each season, different music will play.
+        self.music_key = None
+
+        # Parameter for shaking screen when impact on player is made.
+        self.screenshake = 0
 
     def reset_game(self, first_level):
         """Should be called when the new game is starting.

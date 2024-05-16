@@ -1,13 +1,12 @@
 ## Initial tasks
 Before running the game, create and acrivate a virtual environment, then install
-required packages - [pygame](https://www.pygame.org/) and [pygbag](https://pypi.org/project/pygbag/). 
+a required package - [pygame](https://www.pygame.org/). 
 
 ### Mac
 ```
 /usr/bin/python3 -m venv .venv
 source .venv/bin/activate
 pip install pygame==2.5.2 
-pip install pygbag
 ```
 
 ### Windows
@@ -15,7 +14,6 @@ pip install pygbag
 python -m venv .venv
 .venv\Scripts\activate
 pip install pygame==2.5.2 
-pip install pygbag
 ```   
 When facing the error related the security policy during activating the virtual environment, 
 run the Windows PowerShell with administration privilege, then execute this ```Set-ExecutionPolicy Unrestricted``` 
