@@ -45,7 +45,7 @@ def display_intro(game):
     )
     (_, y) = draw_text(
         game.display,
-        "Ground Tile images from grafxkid.itch.io",
+        "Ground Tile images from grafxkid.itch.io, House images from https://twitter.com/Vryell",
         game.font["text_size5"],
         (
             width / 2,

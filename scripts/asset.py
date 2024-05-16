@@ -18,6 +18,7 @@ def load_asset_images():
         "decor/firehole": load_images("tiles/decor/firehole"),
         "decor/fireswing": load_images("tiles/decor/fireswing"),
         "largedecor": load_images("tiles/largedecor"),
+        "building": load_images("tiles/building"),
         "reward/food": load_images("tiles/reward/food"),
         "player": load_image("entities/Bailey12x22_1.png"),
         "background": {

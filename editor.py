@@ -18,7 +18,7 @@ RENDER_SCALE = 2
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 3
+    LEVEL = 5
 
 
 class Editor:
@@ -46,6 +46,7 @@ class Editor:
             "decor/firehole": load_images("tiles/decor/firehole"),
             "decor/fireswing": load_images("tiles/decor/fireswing"),
             "largedecor": load_images("tiles/largedecor"),
+            "building": load_images("tiles/building"),
             "spawners": load_images("tiles/spawners", trans_color=(0, 0, 0)),
             "reward/food": load_images("tiles/reward/food"),
             "checkpoint": load_images("tiles/checkpoint"),

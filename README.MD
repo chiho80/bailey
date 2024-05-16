@@ -56,6 +56,7 @@ If blocked, temporarely disable the real-time monitoring feature of the security
 Freely download and update Python codes. Do not push the changes you made. Other resources, including SFXs, music, tile & entity images, cannot be redistributed without permission of original creators.  
 * Code developed by [Bailey's Dad](https://github.com/chiho80/bailey)  
 * Ground Tile images collected from grafxkid.itch.io  
+* House images from https://twitter.com/Vryell
 * Squirrel sprites based on original artworks of moose-stache.itch.io  
 * Cat sprites collected from https://craftpix.net/freebies/free-street-animal-pixel-art-asset-pack/
 * SFXs collected from pixabay.com, mixkit.co  
