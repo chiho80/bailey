@@ -19,10 +19,12 @@ def check_keyboard_input(game):
                 if game.player.jump():
                     game.sfx["jump"].play()
             if event.key == pygame.K_x or event.key == pygame.K_l:
-                game.player.dash()
+                # Dashing is not allowed for a while if hit.
+                if game.player.action != "hit":
+                    game.player.dash()
             if event.key == pygame.K_LSHIFT:
                 game.running = True
-            # If any key has been pressed,
+            # If any key has been pressed before the game is started,
             # it triggers the game start!
             if not game.is_game_started:
                 game.load_level(game.level)
