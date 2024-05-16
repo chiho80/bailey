@@ -30,6 +30,9 @@ VELOCITY = {
     "player_dash_mulfactor": 6,  # If mulfactor is large, dash faster, and longer
 }
 
+# Player bounce back when damaged?
+PLAYER_BOUNCE_BACK = True
+
 # If air_time is larger, player will die
 MAX_AIR_TIME_TO_DEAD = 140
 
@@ -86,6 +89,9 @@ ENERGY = {
 
 # Score change
 SCORE = {"squarrel1": 30, "squarrel2": 50, "cat": 70, "fruit": 5}
+
+# Path of the file storing the highest score
+PATH_HIGHEST_SCORE = "data/score_highest.dat"
 
 # Colors
 COLORS = {

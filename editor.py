@@ -18,7 +18,7 @@ RENDER_SCALE = 2
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 6
+    LEVEL = -1
 
 
 class Editor:

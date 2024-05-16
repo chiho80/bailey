@@ -20,7 +20,7 @@ from scripts.control import check_keyboard_input
 try:
     FIRST_LEVEL = int(sys.argv[1])
 except:
-    FIRST_LEVEL = 0
+    FIRST_LEVEL = 1
 
 # Change working directory to the location where the executable is at.
 # Executable cannot find sub folders (data/ and scripts/) without doing this.
@@ -51,9 +51,9 @@ def main():
     game.play_bgm()
 
     # Infinite game loop begins here ...
-    # while 1 is faster than while True
+    # 'while 1:' is faster than 'while True:'
     while 1:
-        # Quit game if any quit condition became True
+        # Quit game if any quit conditions meat
         if quit_game:
             pygame.quit()
             sys.exit()
@@ -94,10 +94,12 @@ def main():
 
         # Level cleared? Transition to the next level!
         if game.levelcleared:
-            # When it's level clear transition, black out a bit slower and longer ...
+            # Play lever clear sfx at the zero frame of the transition
             if game.transition == 0:
                 game.sfx["levelclear"].play()
+            # When it's level clear transition, black out a bit slower (+0.5)
             game.transition += 0.5
+            # If transition frame > 40, load the new level.
             if game.transition > 40:
                 game.level = min(
                     game.level + 1,
@@ -105,8 +107,10 @@ def main():
                     - 1,
                 )
                 game.load_level(game.level)
-        if game.transition < 0:
-            game.transition += 1
+        else:
+            # For normal transition, black out will be faster (+1)
+            if game.transition < 0:
+                game.transition += 1
 
         # If player is died ... reload the level after 40 frames
         if game.dead:
@@ -211,7 +215,7 @@ def main():
                             frame=random.randint(0, 3),
                         )
                     )
-
+        # Render cloud, map, and entities (enemy, player)
         if game.is_game_started:
             # Render cloud.
             if VISUAL_EFFECT["cloud"]:
@@ -248,10 +252,21 @@ def main():
                 )
                 # During demaging (energy is decreasing, blink player)
                 if game.player.blink:
+                    if PLAYER_BOUNCE_BACK:
+                        if game.player.flip:
+                            game.player.pos = [
+                                game.player.pos[0] + (30 - game.player.blink) / 12,
+                                game.player.pos[1],
+                            ]
+                        else:
+                            game.player.pos = [
+                                game.player.pos[0] - (30 - game.player.blink) / 12,
+                                game.player.pos[1],
+                            ]
                     game.player.blink += 1
                     if int(game.time_remain / 50) % 2 == 1:
                         game.player.render(game.display, offset=render_scroll)
-                    if game.player.blink > 60:
+                    if game.player.blink > 30:
                         game.player.blink = 0
                 else:
                     game.player.render(game.display, offset=render_scroll)
@@ -319,7 +334,7 @@ def main():
                             )
                         )
 
-        # Spark of projectiles
+        # Render and remove spark of projectiles
         # Spark is 'object', and the spawn, update and remove will be self managed
         for spark in game.sparks.copy():
             kill = spark.update()
@@ -337,6 +352,7 @@ def main():
             if kill:
                 game.particles.remove(particle)
 
+        # Render fireballs and fireswings
         if game.is_game_started:
             # Render fireballs
             for fireball in game.fireballs.copy():
@@ -378,7 +394,7 @@ def main():
                 _ = fireswing.update()
                 fireswing.render(game.display, offset=render_scroll)
 
-        # Render textmarks
+        # Render textmarks - score numbers when player hit the reward items
         # Textmark is 'object', and the spawn, update and remove will be self managed
         for textmark in game.textmarks.copy():
             kill = textmark.update()
@@ -389,8 +405,8 @@ def main():
         # Check key events
         quit_game = check_keyboard_input(game)
 
-        # Transition must be rendered only if when the game is ongoing.
-        if game.transition and game.is_game_started:
+        # Transition can be rendered only when the game is ongoing.
+        if game.is_game_started and game.transition:
             transition_surf = pygame.Surface(game.display.get_size())
             pygame.draw.circle(
                 transition_surf,
@@ -453,7 +469,7 @@ def main():
         # Update if score is larger than highest score
         if game.score > game.score_highest:
             game.score_highest = game.score
-            save_score_highest("data/score_highest.dat", game.score)
+            save_score_highest(PATH_HIGHEST_SCORE, game.score)
 
         # Display all the objects, images, background, etc...
         pygame.display.update()
