@@ -33,7 +33,19 @@ If the ```build_Win.bat``` is not running without clear reason, execute the comm
 
 ## Run game
 ```python main.py [level]```  
-Make sure to activate the virtual environment before run, using one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows. If ```[level]``` is not provided, level 0 (the first stage) will be loaded. 
+Make sure to activate the virtual environment before run, using one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows. If ```[level]``` is not provided, level 0 (the first stage) will be loaded.
+
+## Keys
+* Left or A - Move to the left   
+* Right or D - Move to the right   
+* Up or W - Jump   
+* Lshift + (Left or A) - Run to the left   
+* Lshift + (Right or D) - Run to the right   
+* X or L - Dash and kill enemy   
+* ESC or P - Pause   
+* M - Mute or unmute   
+* Plus (+) or Minus (-) - Adjust display size   
+
 
 ## Edit map
 ```python editor.py [level]```  
