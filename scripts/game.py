@@ -107,7 +107,9 @@ class Game:
         # Background music starts if the music being played is different from requested music
         if self.music_key != music_key:
             pygame.mixer.music.load(MUSIC[music_key]["file"])
-            pygame.mixer.music.set_volume(MUSIC[music_key]["volume"])
+            pygame.mixer.music.set_volume(
+                MUSIC[music_key]["volume"] if not self.mute else 0
+            )
             pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
             # Update music_key with curent music
             self.music_key = music_key
