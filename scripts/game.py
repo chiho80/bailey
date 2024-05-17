@@ -148,10 +148,11 @@ class Game:
 
         # Collect leaf spawners (trees)
         self.leaf_spawners = []
-        for tree in self.tilemap.extract([("decor/tree", 1)], keep=True):
-            self.leaf_spawners.append(
-                pygame.Rect(4 + tree["pos"][0], 4 + tree["pos"][1], 23, 13)
-            )
+        if VISUAL_EFFECT["leaf"]:
+            for tree in self.tilemap.extract([("decor/tree", 1)], keep=True):
+                self.leaf_spawners.append(
+                    pygame.Rect(4 + tree["pos"][0], 4 + tree["pos"][1], 23, 13)
+                )
 
         # Collect fireball spawners
         self.fireball_spawners = []
