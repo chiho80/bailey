@@ -32,6 +32,7 @@ class PhysicsEntity:
         self.flip = False
         self.set_action("idle")
         self.last_movement = [0, 0]
+        self.mask = None
 
     def rect(self):
         return pygame.Rect(self.pos[0], self.pos[1], self.size[0], self.size[1])
@@ -149,6 +150,7 @@ class PhysicsEntity:
         self.animation.update()
 
     def render(self, surf, offset=(0, 0)):
+        # Draw entity image
         surf.blit(
             pygame.transform.flip(self.animation.img(), self.flip, False),
             (
@@ -156,6 +158,16 @@ class PhysicsEntity:
                 self.pos[1] - offset[1] + self.anim_offset[1],
             ),
         )
+
+        # To use for collision check, update the mask
+        self.mask = pygame.mask.from_surface(self.animation.img())
+        # surf.blit(
+        #     self.mask.to_surface(),
+        #     (
+        #         self.pos[0] - offset[0] + self.anim_offset[0],
+        #         self.pos[1] - offset[1] + self.anim_offset[1] - 30,
+        #     ),
+        # )
 
 
 class Enemy(PhysicsEntity):
@@ -266,7 +278,18 @@ class Enemy(PhysicsEntity):
 
         # If this enemy hits player not during dashing, reduce energy of player
         # and make player's speed reduced & move backward
-        if self.rect().colliderect(self.game.player.rect()):
+        # if self.rect().colliderect(self.game.player.rect()):
+        # Earlier, the collision check was done using the rect of each entity.
+        # Now, we are using mask to make more precise pixel level checking.
+        # mask is None when the game is just started. To avoid error, check
+        # first if masks are created.
+        if (self.mask and self.game.player.mask) and self.mask.overlap(
+            self.game.player.mask,
+            (
+                self.game.player.pos[0] - self.pos[0],
+                self.game.player.pos[1] - self.pos[1],
+            ),
+        ):
             if not self.game.player.dashing:
                 # Trigger blinking
                 self.game.player.blink += 1
@@ -282,6 +305,14 @@ class Enemy(PhysicsEntity):
                     # Trigger screen shake effect
                     self.game.screenshake = max(16, self.game.screenshake)
                 self.game.dead += 1
+
+            # Player bounce direction.
+            # After bouncing effect is finished, main.py will update
+            # the bounce_direction with zero (0).
+            if self.game.player.pos[0] > self.pos[0]:
+                self.game.player.bounce_direction = 1
+            else:
+                self.game.player.bounce_direction = -1
 
         # If enemy got attack (dash) by player...
         if abs(self.game.player.dashing) >= 50:
@@ -364,6 +395,10 @@ class Player(PhysicsEntity):
         self.idle_time = 0
         self.next_frame_for_random = [0, 0]
         self.random_action = "random1"
+
+        # When player is hit by enemy or obstacles, we need to know where to bounce.
+        # +1 bounce to right side, -1 bounce to left side, 0 depends on player.flip
+        self.bounce_direction = 0
 
     def set_random_frames(self):
         random_frame_s = random.randint(200, 600)
@@ -520,6 +555,9 @@ class Player(PhysicsEntity):
             self.velocity[0] = max(self.velocity[0] - 0.1, 0)
         else:
             self.velocity[0] = min(self.velocity[0] + 0.1, 0)
+
+        # To use for collision check, update the mask
+        self.mask = pygame.mask.from_surface(self.animation.img())
 
     def render(self, surf, offset=(0, 0)):
         # Use this to hide the palyer for the first 10 frames

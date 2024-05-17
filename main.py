@@ -254,21 +254,28 @@ def main():
                 if game.player.blink:
                     game.player.set_action("hit")
                     if PLAYER_BOUNCE_BACK:
-                        if game.player.flip:
-                            game.player.pos = [
-                                game.player.pos[0] + (30 - game.player.blink) / 12,
-                                game.player.pos[1] - (30 - game.player.blink) / 12,
-                            ]
+                        x_dir = 1
+                        # Determine the direction of bounce
+                        if game.player.bounce_direction > 0:
+                            x_dir = 1
+                        elif game.player.bounce_direction < 0:
+                            x_dir = -1
+                        # If bounce_direction = 0, use flip to decide.
                         else:
-                            game.player.pos = [
-                                game.player.pos[0] - (30 - game.player.blink) / 12,
-                                game.player.pos[1] - (30 - game.player.blink) / 12,
-                            ]
+                            if game.player.flip:
+                                x_dir = 1
+                            else:
+                                x_dir = -1
+                        game.player.pos = [
+                            game.player.pos[0] + x_dir * (30 - game.player.blink) / 12,
+                            game.player.pos[1] - (30 - game.player.blink) / 12,
+                        ]
                     game.player.blink += 1
                     if int(game.time_remain / 50) % 2 == 1:
                         game.player.render(game.display, offset=render_scroll)
                     if game.player.blink > 30:
                         game.player.blink = 0
+                        game.player.bounce_direction = 0
                 else:
                     game.player.render(game.display, offset=render_scroll)
 
@@ -316,8 +323,17 @@ def main():
                         0, game.player.energy + ENERGY["projectile"]
                     )
                     game.sfx["hit_by_fire"].play()
+
                     # Trigger screen shake effect
                     game.screenshake = max(16, game.screenshake)
+
+                    # Player bounce direction.
+                    # After bouncing effect is finished, main.py will update
+                    # the bounce_direction with zero (0).
+                    if game.player.pos[0] > (projectile[0][0] - projectile[1]):
+                        game.player.bounce_direction = 1
+                    else:
+                        game.player.bounce_direction = -1
 
                     # If energy is zero, trigger death
                     if game.player.energy == 0:

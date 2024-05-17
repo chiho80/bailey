@@ -20,7 +20,6 @@ def load_asset_images():
         "largedecor": load_images("tiles/largedecor"),
         "building": load_images("tiles/building"),
         "reward/food": load_images("tiles/reward/food"),
-        "player": load_image("entities/Bailey12x22_1.png"),
         "background": {
             "summer": [
                 {

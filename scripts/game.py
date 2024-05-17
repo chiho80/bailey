@@ -20,8 +20,13 @@ class Game:
         # Initiate sound mixer
         pygame.mixer.pre_init(44100, 16, 2, 4096)
 
-        # Initiate pygame, set the title to display at top bar
+        # Initiate pygame
         pygame.init()
+
+        # Hide mouse cursor (TODO: not likely working...!)
+        pygame.mouse.set_visible(False)
+
+        # Set the title to display at top bar
         pygame.display.set_caption("Bailey's adventure")
 
         # Initiate fonts
