@@ -32,7 +32,7 @@ exe = EXE(
     target_arch=None,
     codesign_identity=None,
     entitlements_file=None,
-    icon=['data/images/ico/favicon.ico'],
+    icon=['data/images/ico/win_512x512.ico'],
 )
 coll = COLLECT(
     exe,
@@ -46,6 +46,6 @@ coll = COLLECT(
 app = BUNDLE(
     coll,
     name='Bailey.app',
-    icon='data/images/ico/macos.icns',
+    icon='data/images/ico/macos_1024x1024.icns',
     bundle_identifier=None,
 )

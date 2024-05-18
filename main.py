@@ -41,9 +41,9 @@ except:
 # Set app icon.
 if os.name == "nt":
     # Works for MS Windows. Only the file in extension of .ico will work.
-    pygame.display.set_icon(pygame.image.load("data/images/ico/favicon.ico"))
+    pygame.display.set_icon(pygame.image.load("data/images/ico/win_512x512.ico"))
 else:
-    pygame.display.set_icon(pygame.image.load("data/images/ico/macos_512x512x32.png"))
+    pygame.display.set_icon(pygame.image.load("data/images/ico/macos_1024x1024x32.png"))
 
 
 def main():
