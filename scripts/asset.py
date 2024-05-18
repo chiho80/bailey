@@ -7,7 +7,8 @@
 # Copyright (c) 2024 Chiho Kim. All rights reserved.
 
 import pygame
-from scripts.utils import load_image, load_images, Animation, set_volume
+from scripts.utils import load_image, load_images, set_volume
+from scripts.animation import Animation
 
 
 def load_asset_images():

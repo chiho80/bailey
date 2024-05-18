@@ -11,6 +11,18 @@ import pygame
 from scripts.constants import *
 
 
+def play_bgm(game, music_key="summer"):
+    # Background music starts if the music being played is different from requested music
+    if game.music_key != music_key:
+        pygame.mixer.music.load(MUSIC[music_key]["file"])
+        pygame.mixer.music.set_volume(
+            MUSIC[music_key]["volume"] if not game.mute else 0
+        )
+        pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
+        # Update music_key with curent music
+        game.music_key = music_key
+
+
 def set_volume(assets, mute=False):
     """Set volume of SFX and music. Mute if mute is True"""
     # SFX volume
@@ -113,6 +125,8 @@ def draw_text(
 
 
 def load_score_highest(path):
+    """Load a single line from the file (path)
+    Possibly the file does not exist. Set as zero in the case."""
     try:
         f = open(path, "r")
         score_highest = int(f.readline())
@@ -123,6 +137,9 @@ def load_score_highest(path):
 
 
 def save_score_highest(path, score):
+    """Save the highest score to the file (path)
+    File may not exist, but that is fine because the directory 'data'
+    always exist as it's a part of the program."""
     f = open(path, "w")
     f.write(f"{score}")
     f.close()
@@ -134,7 +151,8 @@ def load_image(path, trans_color=None, scale=1):
         img.set_colorkey(trans_color)
     else:
         img = pygame.image.load(BASE_IMG_PATH + path).convert_alpha()
-    img = pygame.transform.scale_by(img, scale)
+    if scale != 1:
+        img = pygame.transform.scale_by(img, scale)
     return img
 
 
@@ -145,28 +163,3 @@ def load_images(path, trans_color=None, scale=1):
     for img_name in files:
         images.append(load_image(path + "/" + img_name, trans_color, scale))
     return images
-
-
-class Animation:
-    def __init__(self, images, img_dur=5, loop=True):
-        self.images = images
-        self.loop = loop
-        self.img_duration = img_dur
-        self.done = False
-        self.frame = 0
-
-    def copy(self):
-        return Animation(self.images, self.img_duration, self.loop)
-
-    def update(self):
-        if self.loop:
-            self.frame = (self.frame + 1) % (self.img_duration * len(self.images))
-        else:
-            self.frame = min(self.frame + 1, self.img_duration * len(self.images) - 1)
-            if self.frame >= self.img_duration * len(self.images) - 1:
-                self.done = True
-
-    def img(self, flip=(False, False)):
-        return pygame.transform.flip(
-            self.images[int(self.frame / self.img_duration)], flip[0], flip[1]
-        )

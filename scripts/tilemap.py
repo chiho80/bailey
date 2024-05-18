@@ -66,6 +66,8 @@ class Tilemap:
         id_pairs: list of tile type & variant pairs
         keep = True if want to keep staying in the game,
         keep = False if wanted to remove after the incident
+        Use a shallow copy (~~.copy()) to avoid error
+        "dict changed during iteration" when keep is False.
         """
         matches = []
         for tile in self.offgrid_tiles.copy():
@@ -74,7 +76,7 @@ class Tilemap:
                 if not keep:
                     self.offgrid_tiles.remove(tile)
 
-        for loc in self.tilemap:
+        for loc in self.tilemap.copy():
             tile = self.tilemap[loc]
             if (tile["type"], tile["variant"]) in id_pairs:
                 matches.append(tile.copy())
@@ -283,7 +285,13 @@ class Tilemap:
                     self.transport[movingtile_spec][1] * -1,
                 )
 
-    def render(self, surf, offset=(0, 0), activate_movingground=True):
+    def render(
+        self,
+        surf,
+        offset=(0, 0),
+        activate_movingground=True,
+        show_movingground_id_pair=False,
+    ):
         # Handle some decorative tiles first ...
         for tile in self.offgrid_tiles:
             (x, y) = (
@@ -317,7 +325,6 @@ class Tilemap:
                         tile["pos"][1] * self.tile_size,
                     )
                     if tile["type"] == "movingtile" and activate_movingground:
-
                         renderpos_moved = (
                             renderpos[0]
                             + math.sin(
@@ -336,7 +343,7 @@ class Tilemap:
                                 "max_range"
                             ][1],
                         )
-                        # Update tilemap with movingground tile position
+                        # Update tilemap with movingtile position
                         self.tilemap[loc] = {
                             "type": tile["type"],
                             "variant": tile["variant"],
@@ -358,3 +365,16 @@ class Tilemap:
                             self.tilemap[loc]["renderpos"][1] - offset[1],
                         ),
                     )
+                    # Display id_pair of movingtile if requested.
+                    # show_movingground_id_pair is True only when called from map editor.
+                    if tile["type"] == "movingtile" and show_movingground_id_pair:
+                        id_pair_img = self.game.text_font.render(
+                            str(tile["variant"]), False, (255, 255, 255)
+                        )
+                        surf.blit(
+                            id_pair_img,
+                            (
+                                self.tilemap[loc]["renderpos"][0] - offset[0],
+                                self.tilemap[loc]["renderpos"][1] + 17 - offset[1],
+                            ),
+                        )

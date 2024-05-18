@@ -27,7 +27,7 @@ RENDER_SCALE = 2
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 9
+    LEVEL = 7
 
 
 class Editor:
@@ -90,6 +90,8 @@ class Editor:
 
         self.activate_movingground = False
 
+        self.text_font = pygame.font.Font("data/fonts/Quinquefive-ALoRM.ttf", 5)
+
     def run(self):
         quit_game = False
 
@@ -107,6 +109,7 @@ class Editor:
                 self.display,
                 offset=render_scroll,
                 activate_movingground=self.activate_movingground,
+                show_movingground_id_pair=True,
             )
 
             # Display current tile selected
@@ -114,6 +117,11 @@ class Editor:
                 self.tile_variant
             ].copy()
             # current_tile_img.set_alpha(100)
+
+            # Text of id_pair (group and variant)
+            current_tile_text = self.text_font.render(
+                f"({self.tile_group}, {self.tile_variant})", False, (255, 255, 255)
+            )
 
             # Get mouse position
             mpos = pygame.mouse.get_pos()
@@ -160,7 +168,8 @@ class Editor:
                         self.tilemap.offgrid_tiles.remove(tile)
 
             # Preview current tile selected at top left
-            self.display.blit(current_tile_img, (5, 5))
+            self.display.blit(current_tile_text, (5, 5))
+            self.display.blit(current_tile_img, (5, 13))
 
             # Quit game if any quit condition became True
             if quit_game:

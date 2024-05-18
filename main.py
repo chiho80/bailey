@@ -12,7 +12,7 @@ import random
 import math
 import pygame
 from scripts.constants import *
-from scripts.utils import save_score_highest
+from scripts.utils import save_score_highest, play_bgm
 from scripts.banners import (
     display_intro,
     display_gameover,
@@ -49,17 +49,14 @@ else:
 
 
 def main():
-    """Main game loop happens in this async function.
+    """Main game loop.
     Create a game object, update every elements (player, enemy, tiles, background...),
     render them, check key controls, dead check, level check, etc ...
-    async is used just in case of using the pygbag, which is not likely happening
-    because of the speed issue.
     """
 
-    game = Game(FIRST_LEVEL)
+    game = Game()
     quit_game = False
     game.reset_game(FIRST_LEVEL)
-    game.play_bgm()
 
     # Infinite game loop begins here ...
     # 'while 1:' is faster than 'while True:'
@@ -116,7 +113,7 @@ def main():
                 if game.level == LAST_LEVEL_ID:
                     game.finale = True
                     game.is_game_started = False
-                    game.play_bgm(music_key="finale")
+                    play_bgm(game, music_key="finale")
                 else:
                     # Other than that, increase level number
                     # and show level cleared message and continue
@@ -458,7 +455,7 @@ def main():
         # If lives is zero, display game over screen
         if not game.lives and not game.finale:
             display_gameover(game)
-            game.play_bgm(music_key="gameover")
+            play_bgm(game, music_key="gameover")
 
         # If the game is not started, show intro screen
         if not game.is_game_started and not game.finale:

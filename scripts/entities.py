@@ -450,9 +450,10 @@ class Player(PhysicsEntity):
                 )
                 del tilemap.tilemap[tile_loc]
 
-        # If player hit finishline tile, update now!
-        for rects in tilemap.rects_around(self, tile_types=["finishline"]):
-            if entity_rect.colliderect(rects["rect"]):
+        # If player passed the finishline tile, set levelcleared = True
+        # The tilemap MUST have at least one finishline tile!
+        if len(self.game.finishline_tiles):
+            if self.game.player.pos[0] >= self.game.finishline_tiles[0]["pos"][0]:
                 self.game.levelcleared = True
 
         # If player is falling to long time, it means the player is died ...

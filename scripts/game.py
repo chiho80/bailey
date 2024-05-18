@@ -13,17 +13,13 @@ from scripts.background import Background
 from scripts.constants import *
 from scripts.entities import Player, Enemy
 from scripts.tilemap import Tilemap
-
 from scripts.clouds import Clouds
 from scripts.asset import load_asset_images, load_asset_sfx, load_asset_fonts
-from scripts.utils import (
-    load_score_highest,
-    resize_screen,
-)
+from scripts.utils import load_score_highest, resize_screen, play_bgm
 
 
 class Game:
-    def __init__(self, first_level):
+    def __init__(self):
         """Game class initiates the game, declare global attributes related
         to the game operation, setting up stages, play music, and reset the game"""
         # Initiate sound mixer
@@ -46,7 +42,7 @@ class Game:
         self.display_size_id = 0
         resize_screen(self, 0)
         self.display = pygame.Surface(
-            self.display_sizes[8],  # 8 is (512,288)). Fix this!! Do not change!!
+            self.display_sizes[DISPLAY_SIZE_DEFAULT_ID],
             pygame.SRCALPHA,
         )
 
@@ -60,14 +56,12 @@ class Game:
         # Load sfx
         self.sfx = load_asset_sfx()
 
-        # Set player variables
+        # Set player variables. The postion is random. When the map is loaded,
+        # actual position of the player will be determined based on the spawning
+        # tile location.
         self.movement = [False, False]
         self.running = False
         self.player = Player(self, (70, 20), (12, 22))
-
-        # Set level and corresponding season
-        self.level = first_level
-        self.season = LEVELS[str(self.level)]["season"]
 
         # If needed, create clouds using Cloud class
         if VISUAL_EFFECT["cloud"]:
@@ -76,13 +70,8 @@ class Game:
         # Initiate tilemap
         self.tilemap = Tilemap(self, tile_size=16)
 
-        # Initiate background
-        self.background = Background(
-            self.display, self.assets["background"], season=self.season
-        )
-
         # Read the highest score from the file
-        self.score_highest = load_score_highest("data/score_highest.dat")
+        self.score_highest = load_score_highest(PATH_HIGHEST_SCORE)
 
         # Initiate statusboard
         self.statusboard = StatusBoard(self)
@@ -118,17 +107,6 @@ class Game:
         self.finale = False
         self.load_level(self.level)
 
-    def play_bgm(self, music_key="summer"):
-        # Background music starts if the music being played is different from requested music
-        if self.music_key != music_key:
-            pygame.mixer.music.load(MUSIC[music_key]["file"])
-            pygame.mixer.music.set_volume(
-                MUSIC[music_key]["volume"] if not self.mute else 0
-            )
-            pygame.mixer.music.play(-1, 0.0)  # -1=infinite loop, 0.0=from the begining
-            # Update music_key with curent music
-            self.music_key = music_key
-
     def load_level(self, map_id, passed_checkpoint_pos=None, reset_time=True):
         """Load level map, spawn all entites,
         and get ready to generate particles, spakrs and projectiles render ready,
@@ -147,13 +125,13 @@ class Game:
 
         # Update level and background assets
         self.level = map_id
-        self.season = LEVELS[str(map_id)]["season"]
+        self.season = LEVELS[str(self.level)]["season"]
         self.background = Background(
             self.display, self.assets["background"], season=self.season
         )
 
         # If the music has been already playing, it won't replayed.
-        self.play_bgm(music_key=self.season)
+        play_bgm(self, music_key=self.season)
 
         # Update character asset
         if self.season == "winter":
@@ -233,12 +211,16 @@ class Game:
         # (ex, it's True when fresh start of the level)
         # If the level is loaded because the player died,
         # give 30 more seconds for second chance.
+        # Cannot be larger than the original time_limit defined in LEVELS
         if reset_time:
-            self.time_limit = TIME_LIMIT  # ms
+            self.time_limit = LEVELS[str(self.level)]["time_limit"]  # ms
             self.time_remain = self.time_limit  #  ms
             self.time_start = pygame.time.get_ticks()  # ms
         else:
-            self.time_limit = self.time_remain + EXTRA_TIME_AFTER_DEAD  # ms
+            self.time_limit = min(
+                self.time_remain + EXTRA_TIME_AFTER_DEAD,
+                LEVELS[str(self.level)]["time_limit"],
+            )  # ms
             self.time_remain = self.time_limit  #  ms
             self.time_start = pygame.time.get_ticks()  # ms
 
@@ -249,3 +231,5 @@ class Game:
         self.levelcleared = (
             False  # To be converted to True when player hits the finishline tile
         )
+        # Finishline tiles (variant 0 is the top left corner tile of the finishline sigh)
+        self.finishline_tiles = self.tilemap.extract([("finishline", 0)], keep=True)

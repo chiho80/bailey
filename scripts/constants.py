@@ -10,9 +10,6 @@
 # If it's 4, a very first player + 3 more lives, total 4. 3 heads will be displayed
 FIRST_LIVES = 4
 
-# Max time for each level
-TIME_LIMIT = 120000  # ms
-
 # Additional time to be added when player died
 EXTRA_TIME_AFTER_DEAD = 15000  # ms
 
@@ -45,9 +42,8 @@ PLAYER_BOUNCE_BACK = True
 MAX_AIR_TIME_TO_DEAD = 140
 
 # Available display sizes. Keep every resolutions 16:9 ratio.
-# Make sure (512, 288) is always at 9th. (array index = 8)
 DISPLAY_SIZE_OPTIONS = [
-    (1536, 864),
+    (1536, 864),  # JY's Samsung Laptop
     (1600, 900),
     (2048, 1152),
     (2056, 1156),  # New MacBook Pro =  (2056, 1329)
@@ -58,22 +54,28 @@ DISPLAY_SIZE_OPTIONS = [
     (512, 288),
     (1024, 576),
 ]
+# Make sure to point (512, 288) (id starts from 0)
+DISPLAY_SIZE_DEFAULT_ID = 8
 
 # Path image base
 BASE_IMG_PATH = "data/images/"
 
 # Season for each level
 LEVELS = {
-    "-1": {"map": "../dev_resource/maps/testmap.json", "season": "autumn"},
-    "1": {"map": "data/maps/1.json", "season": "summer"},
-    "2": {"map": "data/maps/2.json", "season": "summer"},
-    "3": {"map": "data/maps/3.json", "season": "summer"},
-    "4": {"map": "data/maps/4.json", "season": "autumn"},
-    "5": {"map": "data/maps/5.json", "season": "autumn"},
-    "6": {"map": "data/maps/6.json", "season": "winter"},
-    "7": {"map": "data/maps/7.json", "season": "winter"},
-    "8": {"map": "data/maps/8.json", "season": "tropic"},
-    "9": {"map": "data/maps/9.json", "season": "tropic"},
+    "-1": {
+        "map": "../dev_resource/maps/testmap.json",
+        "season": "autumn",
+        "time_limit": 60000,
+    },
+    "1": {"map": "data/maps/1.json", "season": "summer", "time_limit": 80000},
+    "2": {"map": "data/maps/2.json", "season": "summer", "time_limit": 100000},
+    "3": {"map": "data/maps/3.json", "season": "summer", "time_limit": 120000},
+    "4": {"map": "data/maps/4.json", "season": "autumn", "time_limit": 120000},
+    "5": {"map": "data/maps/5.json", "season": "autumn", "time_limit": 150000},
+    "6": {"map": "data/maps/6.json", "season": "winter", "time_limit": 150000},
+    "7": {"map": "data/maps/7.json", "season": "winter", "time_limit": 180000},
+    "8": {"map": "data/maps/8.json", "season": "tropic", "time_limit": 180000},
+    "9": {"map": "data/maps/9.json", "season": "tropic", "time_limit": 180000},
 }
 LAST_LEVEL_ID = max([int(level) for level in LEVELS])
 
@@ -144,5 +146,5 @@ PHYSICS_CHECK_PIXELS_DOWN_BELOW = 25
 # Fireswing length (number of fireballs)
 FIRESWING_LENGTH = 8
 
-# Fireswing unit length (ball center to ball center)
+# Fireswing unit length (center to center distance between adjacent balls)
 FIRESWING_UNIT_LENGTH = 6

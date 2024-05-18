@@ -12,11 +12,6 @@ from scripts.constants import COLORS
 
 
 def display_intro(game):
-    # Get the display size (not the screen size)
-    # Display size depends on user's desktop setting.
-    # Once the game is started, the display size is fixed!
-    # ex) iMac Pro
-    #     Display size = (512 x 288) which is 1/5 of the iMac Pro's full resolution (2560 x 1440)
     width = game.display.get_width()
     height = game.display.get_height()
     game.display.blit(
