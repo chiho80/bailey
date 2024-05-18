@@ -102,14 +102,15 @@ def main():
             game.transition += 0.5
             # If transition frame > 40, load the new level.
             if game.transition > 40:
-                game.level = min(game.level + 1, LAST_LEVEL_ID)
-                # If the level cleared was the last stage, display_finale
+                # If the level just cleared was the last stage, display_finale
                 if game.level == LAST_LEVEL_ID:
                     game.finale = True
                     game.is_game_started = False
                     game.play_bgm(music_key="finale")
                 else:
-                    # Other than that, show level cleared message and continue
+                    # Other than that, increase level number
+                    # and show level cleared message and continue
+                    game.level = min(game.level + 1, LAST_LEVEL_ID)
                     game.load_level(game.level)
         else:
             # For normal transition, black out will be faster (+1)
