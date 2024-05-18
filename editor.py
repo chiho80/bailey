@@ -6,20 +6,20 @@ from scripts.tilemap import Tilemap
 DISPLAY_SIZE = (800, 452)
 RENDER_SCALE = 2
 
-# 0 = summer 1
-# 1 = summer 2
-# 2 = summer 3
-# 3 = autumn 1
-# 4 = autumn 2
-# 5 = winter 1
-# 6 = winter 2
-# 7 = tropic 1
-# 8 = tropic 2
+# 1 = summer 1
+# 2 = summer 2
+# 3 = summer 3
+# 4 = autumn 1
+# 5 = autumn 2
+# 6 = winter 1
+# 7 = winter 2
+# 8 = tropic 1
+# 9 = tropic 2
 
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 8
+    LEVEL = 9
 
 
 class Editor:

@@ -57,15 +57,15 @@ BASE_IMG_PATH = "data/images/"
 # Season for each level
 LEVELS = {
     "-1": {"map": "../dev_resource/maps/testmap.json", "season": "autumn"},
-    "0": {"map": "data/maps/0.json", "season": "summer"},
     "1": {"map": "data/maps/1.json", "season": "summer"},
     "2": {"map": "data/maps/2.json", "season": "summer"},
-    "3": {"map": "data/maps/3.json", "season": "autumn"},
+    "3": {"map": "data/maps/3.json", "season": "summer"},
     "4": {"map": "data/maps/4.json", "season": "autumn"},
-    "5": {"map": "data/maps/5.json", "season": "winter"},
+    "5": {"map": "data/maps/5.json", "season": "autumn"},
     "6": {"map": "data/maps/6.json", "season": "winter"},
-    "7": {"map": "data/maps/7.json", "season": "tropic"},
+    "7": {"map": "data/maps/7.json", "season": "winter"},
     "8": {"map": "data/maps/8.json", "season": "tropic"},
+    "9": {"map": "data/maps/9.json", "season": "tropic"},
 }
 LAST_LEVEL_ID = max([int(level) for level in LEVELS])
 

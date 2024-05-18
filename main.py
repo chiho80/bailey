@@ -21,7 +21,7 @@ from scripts.control import check_keyboard_input
 try:
     FIRST_LEVEL = int(sys.argv[1])
 except:
-    FIRST_LEVEL = 0
+    FIRST_LEVEL = 1
 
 # Change working directory to the location where the executable is at.
 # Executable cannot find sub folders (data/ and scripts/) without doing this.

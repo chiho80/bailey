@@ -134,7 +134,7 @@ class Game:
             self.tilemap.load(LEVELS[str(map_id)]["map"])
         except:
             # TODO can do this better
-            self.tilemap.load(LEVELS["0"]["map"])
+            self.tilemap.load(LEVELS["1"]["map"])
 
         # Update level and background assets
         self.level = map_id

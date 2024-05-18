@@ -132,7 +132,7 @@ def display_gameover(game):
     )
     (_, y) = draw_text(
         game.display,
-        f"STAGE {'.'*(10-len(str(game.level+1)))} {game.level+1}",
+        f"STAGE {'.'*(10-len(str(game.level)))} {game.level}",
         game.font["text_size8"],
         (
             width / 2,
@@ -192,7 +192,7 @@ def display_finale(game):
     )
     (_, y) = draw_text(
         game.display,
-        f"STAGE {'.'*(10-len(str(game.level+1)))} {game.level+1}",
+        f"STAGE {'.'*(10-len(str(game.level)))} {game.level}",
         game.font["text_size8"],
         (
             width / 2,
