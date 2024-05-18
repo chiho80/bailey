@@ -14,11 +14,12 @@ RENDER_SCALE = 2
 # 5 = winter 1
 # 6 = winter 2
 # 7 = tropic 1
+# 8 = tropic 2
 
 try:
     LEVEL = int(sys.argv[1])
 except:
-    LEVEL = 5
+    LEVEL = 8
 
 
 class Editor:

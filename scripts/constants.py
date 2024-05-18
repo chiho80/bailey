@@ -65,6 +65,7 @@ LEVELS = {
     "5": {"map": "data/maps/5.json", "season": "winter"},
     "6": {"map": "data/maps/6.json", "season": "winter"},
     "7": {"map": "data/maps/7.json", "season": "tropic"},
+    "8": {"map": "data/maps/8.json", "season": "tropic"},
 }
 
 # Music files for each season

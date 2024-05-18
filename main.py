@@ -267,13 +267,13 @@ def main():
                             else:
                                 x_dir = -1
                         game.player.pos = [
-                            game.player.pos[0] + x_dir * (30 - game.player.blink) / 12,
-                            game.player.pos[1] - (30 - game.player.blink) / 12,
+                            game.player.pos[0] + x_dir * (20 - game.player.blink) / 10,
+                            game.player.pos[1],
                         ]
                     game.player.blink += 1
                     if int(game.time_remain / 50) % 2 == 1:
                         game.player.render(game.display, offset=render_scroll)
-                    if game.player.blink > 30:
+                    if game.player.blink > 20:
                         game.player.blink = 0
                         game.player.bounce_direction = 0
                 else:
