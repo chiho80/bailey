@@ -47,10 +47,10 @@ The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a goo
 pip install pyinstaller
 pip install Pillow
 ```   
-Run ```build_Mac.sh``` to create an app for MacOS ```bailey.app``` under dist folder. 
-Run ```build_Win.bat``` to create an app for MS Windows ```bailey.exe``` under dist folder. 
+Run ```build.sh``` to create an app for MacOS ```bailey.app``` under dist folder. 
+Run ```win_build.bat``` to create an app for MS Windows ```bailey.exe``` under dist folder. 
 The built-in security monitoring tools of MS Windows may block running the pyinstaller during building process. 
-If blocked, temporarely disable the real-time monitoring feature of the security tool, try building again, then enable after the building is completed. If the ```build_Win.bat``` is doing nothing in shell, manually issue the commands in the ```build_Win.bat``` file.
+If blocked, temporarely disable the real-time monitoring feature of the security tool, try building again, then enable after the building is completed. If the ```win_build.bat``` is doing nothing in shell, manually issue the commands in the ```win_build.bat``` file.
 
 ## Copyrights
 Freely download and update Python codes. Do not push the changes you made. Other resources, including SFXs, music, tile & entity images, cannot be redistributed without permission of original creators.  
