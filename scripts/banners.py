@@ -140,6 +140,17 @@ def display_gameover(game):
     )
     (_, y) = draw_text(
         game.display,
+        f"HIGHEST {'.'*(10-len(str(game.score_highest)))} {game.score_highest}  ",
+        game.font["text_size8"],
+        (
+            width / 2,
+            y + 17,
+        ),
+        text_col=COLORS["white"],
+        align=("center", "middle"),
+    )
+    (_, y) = draw_text(
+        game.display,
         f"STAGE {'.'*(10-len(str(game.level)))} {game.level}",
         game.font["text_size8"],
         (
@@ -194,6 +205,17 @@ def display_finale(game):
         (
             width / 2,
             y + 45,
+        ),
+        text_col=COLORS["white"],
+        align=("center", "middle"),
+    )
+    (_, y) = draw_text(
+        game.display,
+        f"HIGHEST {'.'*(10-len(str(game.score_highest)))} {game.score_highest}  ",
+        game.font["text_size8"],
+        (
+            width / 2,
+            y + 17,
         ),
         text_col=COLORS["white"],
         align=("center", "middle"),

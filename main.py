@@ -31,14 +31,16 @@ try:
 except:
     FIRST_LEVEL = 1
 
-# Change working directory to the location where the executable is at.
-# Executable cannot find sub folders (data/ and scripts/) without doing this.
+# Change the working directory to the location where the
+# main.py (this file) is at, or where the executable is placed.
+# Running main.py is not an issue without this dir change,
+# but executable fails to find sub folders (data/ and scripts/) without doing this.
 try:
     os.chdir(sys._MEIPASS)
 except:
     os.chdir(os.getcwd())
 
-# Set app icon.
+# Set app icon to be shown in the Dock during the game is running.
 if os.name == "nt":
     # Works for MS Windows. Only the file in extension of .ico will work.
     pygame.display.set_icon(pygame.image.load("data/images/ico/win_512x512.ico"))
