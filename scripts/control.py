@@ -58,7 +58,7 @@ def check_keyboard_input(game):
                 game.movement[0] = False
                 game.movement[1] = False
             if event.key == pygame.K_7:
-                game.level = max(game.level - 1, 0)
+                game.level = max(game.level - 1, 1)
                 game.load_level(game.level)
             if event.key == pygame.K_8:
                 game.level = min(game.level + 1, max([int(key) for key in LEVELS]))
