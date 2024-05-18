@@ -1,6 +1,6 @@
 ## Initial tasks
 Before running the game or building executable, create and acrivate a virtual environment, then install
-a required package - [pygame](https://www.pygame.org/). Follow 
+a required package - [pygame](https://www.pygame.org/). Follow one of the instructions depending on your operating system.
 
 ### On Mac OS
 ```
@@ -19,12 +19,12 @@ When facing the error related to the security policies during activating the vir
 run the Windows PowerShell with administration privilege, then issue ```Set-ExecutionPolicy Unrestricted``` 
 on the shell prompt. Select Y on the question. Now you will be able to activate the virtual environment.
 
-## Run game   
+## Run the game   
 To run the game using Python interpreter under the virtual environment, issue ```python main.py [level]``` 
 on the shell prompt. To activate the virtual environment, use one of the commands ```source .venv/bin/activate``` 
 on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not provided, stage 1 will be loaded.    
 
-## Keys
+## Keyboard controls 
 * Left or A - Move to the left   
 * Right or D - Move to the right   
 * Up or W - Jump   
@@ -35,14 +35,24 @@ on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not p
 * M - Mute or unmute   
 * Plus (+) or Minus (-) - Adjust display size   
 
-## Edit map
-Issue following command on shell prompt.   
+## Edit maps
+You may modiry the maps or create new map using map editor. Issue following command on shell prompt.   
 ```python editor.py [level]```   
 If ```[level]``` is not provided, level 1 will be open.   
-G: toggle on/offgrid, ASDW: move viewport, T: autotile, O: save map, Z/X: change variant, C/V: change tile class, M: toggle start/stop the motion for dynamic tiles, ESC: quit the editor
+
+### Keys used   
+* ```G```: toggle on/offgrid   
+* ```A```, ```S```, ```D```, ```W```: move viewport   
+* ```T```: autotile   
+* ```Z``` or ```X```: change variant   
+* ```C``` or ```V```: change tile class   
+* ```M```: toggle start/stop the motion for dynamic tiles   
+* ```O```: save map   
+* ```ESC```: quit the editor   
   
 ## Build executable
-The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a good option to make executables.   
+The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a good option to make executables. 
+Install ```pyinstaller``` on the virtual environment using following command. ```pillow``` is optional. 
 ```
 pip install pyinstaller
 pip install Pillow
