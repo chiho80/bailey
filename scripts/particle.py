@@ -1,3 +1,11 @@
+# particle.py - Particle class (fireball, fireswing, projectile, leaf)
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : particle.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import math
 
 

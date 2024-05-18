@@ -1,3 +1,12 @@
+# background.py - Background class
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : background.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
+
 def position_initialize(pos, img_size, surf_size):
     render_pos = [0, 0]
     for i, val in enumerate(pos):

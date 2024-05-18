@@ -1,3 +1,11 @@
+# spark.py - Spark class
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : spark.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import math
 import random
 import pygame

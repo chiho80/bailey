@@ -1,3 +1,11 @@
+# banner.py - Functions to display screen covering banners
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : banner.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import pygame
 from scripts.utils import draw_text
 from scripts.constants import COLORS

@@ -1,3 +1,11 @@
+# editor.py - Map editor
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : editor.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import sys
 import pygame
 from scripts.utils import load_images

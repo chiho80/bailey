@@ -1,3 +1,11 @@
+# control.py - Key detector
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : control.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import pygame
 from scripts.utils import resize_screen, set_mute
 from scripts.constants import LEVELS

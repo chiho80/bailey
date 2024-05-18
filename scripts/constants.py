@@ -1,4 +1,12 @@
-# The first lives
+# constants.py - Global constants
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : constants.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
+# The first number of lives
 # If it's 4, a very first player + 3 more lives, total 4. 3 heads will be displayed
 FIRST_LIVES = 4
 

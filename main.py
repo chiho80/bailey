@@ -1,3 +1,11 @@
+# main.py - Entry point of the game 'Bailey's Adventure'
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : main.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import os
 import sys
 import random

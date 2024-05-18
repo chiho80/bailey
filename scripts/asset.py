@@ -1,3 +1,11 @@
+# asset.py - Register all assets (music, sfx, image)
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : asset.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import pygame
 from scripts.utils import load_image, load_images, Animation, set_volume
 

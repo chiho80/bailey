@@ -1,3 +1,11 @@
+# utils.py - Helper functions
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : utils.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
 import os
 import pygame
 from scripts.constants import *

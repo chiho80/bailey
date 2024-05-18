@@ -1,3 +1,12 @@
+# textmark.py - Textmark class
+#
+# @author      : Chiho Kim (chiho80@gmail.com)
+# @file        : textmark.py
+# @created     : Fridat May 17, 2024 22:42 PT
+#
+# Copyright (c) 2024 Chiho Kim. All rights reserved.
+
+
 class TextMark:
     def __init__(self, pos, text_surf, speed):
         self.text_surf = text_surf
