@@ -1,28 +1,28 @@
 ## Initial tasks
-Before running the game, create and acrivate a virtual environment, then install
-a required package - [pygame](https://www.pygame.org/). 
+Before running the game or building executable, create and acrivate a virtual environment, then install
+a required package - [pygame](https://www.pygame.org/). Follow 
 
-### Mac
+### On Mac OS
 ```
 /usr/bin/python3 -m venv .venv
 source .venv/bin/activate
 pip install pygame==2.5.2 
 ```
 
-### Windows
+### On MS Windows
 ```
 python -m venv .venv
 .venv\Scripts\activate
 pip install pygame==2.5.2 
 ```   
-When facing the error related the security policy during activating the virtual environment, 
-run the Windows PowerShell with administration privilege, then execute this ```Set-ExecutionPolicy Unrestricted``` 
-on the shell, then select Y on the question. Now you will be able to activate the virtual environment.
+When facing the error related to the security policies during activating the virtual environment, 
+run the Windows PowerShell with administration privilege, then issue ```Set-ExecutionPolicy Unrestricted``` 
+on the shell prompt. Select Y on the question. Now you will be able to activate the virtual environment.
 
-## Run game
-Load the code using installed ```python``` under the virtual environment activated.   
-```python main.py [level]```  
-If ```[level]``` is not provided, level 0 (the first stage) will be loaded. To activate the virtual environment, use one of the commands ```source .venv/bin/activate``` on Mac or ```.venv\Scripts\activate``` on Windows. 
+## Run game   
+To run the game using Python interpreter under the virtual environment, issue ```python main.py [level]``` 
+on the shell prompt. To activate the virtual environment, use one of the commands ```source .venv/bin/activate``` 
+on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not provided, stage 1 will be loaded.    
 
 ## Keys
 * Left or A - Move to the left   
@@ -35,25 +35,25 @@ If ```[level]``` is not provided, level 0 (the first stage) will be loaded. To a
 * M - Mute or unmute   
 * Plus (+) or Minus (-) - Adjust display size   
 
-
 ## Edit map
-Issue following command on shell.   
-```python editor.py [level]```  
-If ```[level]``` is not provided, level 0 (the first stage) will be open. 
+Issue following command on shell prompt.   
+```python editor.py [level]```   
+If ```[level]``` is not provided, level 1 will be open.   
+G: toggle on/offgrid, ASDW: move viewport, T: autotile, O: save map, Z/X: change variant, C/V: change tile class, M: toggle start/stop the motion for dynamic tiles, ESC: quit the editor
   
-## Distribute the game
+## Build executable
 The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a good option to make executables.   
 ```
 pip install pyinstaller
 pip install Pillow
 ```   
-Run ```build.sh``` to create an app for MacOS ```bailey.app``` under dist folder. 
+Run ```build.sh``` to create an app for Mac OS ```bailey.app``` under dist folder. 
 Run ```win_build.bat``` to create an app for MS Windows ```bailey.exe``` under dist folder. 
-The built-in security monitoring tools of MS Windows may block running the pyinstaller during building process. 
-If blocked, temporarely disable the real-time monitoring feature of the security tool, try building again, then enable after the building is completed. If the ```win_build.bat``` is doing nothing in shell, manually issue the commands in the ```win_build.bat``` file.
+The built-in security monitoring tools of MS Windows may block running the pyinstaller. 
+If blocked, temporarely disable the real-time monitoring feature of the security tool, try building again, then enable back the real-time monitoring feature after the building is completed. If the ```win_build.bat``` is doing nothing in the shell, manually issue the commands in the ```win_build.bat``` file.
 
 ## Copyrights
-Freely download and update Python codes. Do not push the changes you made. Other resources, including SFXs, music, tile & entity images, cannot be redistributed without permission of original creators.  
+Freely download, modify, and redistribute the Python codes in this repository. Do not push or PR the changes you made. Other resources, including SFXs, music, tile & entity images, cannot be redistributed without permission of original creators.  
 * Code developed by [Bailey's Dad](https://github.com/chiho80/bailey)  
 * Ground Tile images collected from grafxkid.itch.io  
 * House images from https://twitter.com/Vryell
