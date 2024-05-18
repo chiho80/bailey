@@ -40,15 +40,18 @@ You may modiry the maps or create new map using map editor. Issue following comm
 ```python editor.py [level]```   
 If ```[level]``` is not provided, level 1 will be open.   
 
-### Keys used   
-* ```G```: toggle on/offgrid   
-* ```A```, ```S```, ```D```, ```W```: move viewport   
-* ```T```: autotile   
-* ```Z``` or ```X```: change variant   
-* ```C``` or ```V```: change tile class   
-* ```M```: toggle start/stop the motion for dynamic tiles   
-* ```O```: save map   
-* ```ESC```: quit the editor   
+### Controls
+* ```G```: Toggle on/offgrid   
+* ```A```, ```S```, ```D```, ```W```: Move viewport   
+* ```T```: Autotile   
+* ```C``` or ```V``` or Mouse scroll: Change tile class   
+* ```Z``` or ```X``` or ```Shift``` + Mouse scroll: Change variant   
+* ```M```: Toggle start/stop the motion for dynamic tiles   
+* ```O```: Save map   
+* ```ESC```: Quit the editor   
+* Mouse position: Locate a map element
+* Mouse left click: Place a map element
+* Mouse right click: Delete a map element 
   
 ## Build executable
 The converter package [pyinstaller](https://pyinstaller.org/en/stable/) is a good option to make executables. 
