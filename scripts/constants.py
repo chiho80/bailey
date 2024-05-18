@@ -67,6 +67,7 @@ LEVELS = {
     "7": {"map": "data/maps/7.json", "season": "tropic"},
     "8": {"map": "data/maps/8.json", "season": "tropic"},
 }
+LAST_LEVEL_ID = max([int(level) for level in LEVELS])
 
 # Music files for each season
 MUSIC = {
@@ -75,6 +76,7 @@ MUSIC = {
     "winter": {"file": "data/music/POL-smiley-island-short.wav", "volume": 0.5},
     "tropic": {"file": "data/music/POL-a-sinister-puzzle-short.wav", "volume": 0.5},
     "gameover": {"file": "data/music/POL-foggy-forest-short.wav", "volume": 0.5},
+    "finale": {"file": "data/music/POL-pet-park-short.wav", "volume": 0.5},
 }
 
 # Energy change

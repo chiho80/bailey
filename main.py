@@ -10,6 +10,7 @@ from scripts.banners import (
     display_gameover,
     display_paused,
     display_level_cleared,
+    display_finale,
 )
 from scripts.game import Game
 from scripts.particle import Particle
@@ -58,9 +59,9 @@ def main():
             pygame.quit()
             sys.exit()
 
-        # If lives remaining is zero (game over),
-        # Wait until user select quit or start a new game.
-        if not game.lives:
+        # If lives remaining is zero (game over) or game finale,
+        # wait until user select quit or start a new game.
+        if not game.lives or game.finale:
             selection_made = False
             while not selection_made:
                 for event in pygame.event.get():
@@ -75,8 +76,8 @@ def main():
                             selection_made = True
             if not quit_game:
                 game.reset_game(FIRST_LEVEL)
-                game.load_level(game.level)
                 game.sfx["levelclear"].play()
+                game.is_game_started = True
             else:
                 pygame.quit()
                 sys.exit()
@@ -94,19 +95,22 @@ def main():
 
         # Level cleared? Transition to the next level!
         if game.levelcleared:
-            # Play lever clear sfx at the zero frame of the transition
+            # Play level clear sfx at the zero frame of the transition
             if game.transition == 0:
                 game.sfx["levelclear"].play()
             # When it's level clear transition, black out a bit slower (+0.5)
             game.transition += 0.5
             # If transition frame > 40, load the new level.
             if game.transition > 40:
-                game.level = min(
-                    game.level + 1,
-                    len([x for x in os.listdir("data/maps") if x.endswith(".json")])
-                    - 1,
-                )
-                game.load_level(game.level)
+                game.level = min(game.level + 1, LAST_LEVEL_ID)
+                # If the level cleared was the last stage, display_finale
+                if game.level == LAST_LEVEL_ID:
+                    game.finale = True
+                    game.is_game_started = False
+                    game.play_bgm(music_key="finale")
+                else:
+                    # Other than that, show level cleared message and continue
+                    game.load_level(game.level)
         else:
             # For normal transition, black out will be faster (+1)
             if game.transition < 0:
@@ -307,7 +311,7 @@ def main():
                             size=(1, 3),
                         )
                     )
-            elif projectile[2] > 360:
+            elif projectile[2] > 300:
                 # When projectile traveles too long
                 game.projectiles.remove(projectile)
             elif abs(game.player.dashing) < 50:
@@ -422,8 +426,10 @@ def main():
         # Check key events
         quit_game = check_keyboard_input(game)
 
-        # Transition can be rendered only when the game is ongoing.
-        if game.is_game_started and game.transition:
+        # Transition can be rendered only when the game is ongoing or game finale.
+        if (game.is_game_started and game.transition) or (
+            game.finale and game.transition
+        ):
             transition_surf = pygame.Surface(game.display.get_size())
             pygame.draw.circle(
                 transition_surf,
@@ -439,21 +445,26 @@ def main():
             game.statusboard.render(game.display, pos=(5, 5))
 
         # If lives is zero, display game over screen
-        if not game.lives:
+        if not game.lives and not game.finale:
             display_gameover(game)
             game.play_bgm(music_key="gameover")
 
         # If the game is not started, show intro screen
-        if not game.is_game_started:
+        if not game.is_game_started and not game.finale:
             display_intro(game)
 
         # If paused is true, pause till any key up
         if game.paused:
             display_paused(game)
 
-        # If level is cleared ...
-        if game.levelcleared:
+        # If level is cleared, and it was not the last stage,  show level clear banner.
+        # Cannot use game.finale because it's not updated yet.
+        if game.levelcleared and not (game.level == LAST_LEVEL_ID):
             display_level_cleared(game)
+
+        # If game is finished ...
+        if game.finale:
+            display_finale(game)
 
         # If shake offset is defined, apply
         screenshake_offset = (

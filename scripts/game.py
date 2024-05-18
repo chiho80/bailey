@@ -106,6 +106,7 @@ class Game:
         )
         self.lives = FIRST_LIVES
         self.score = 0
+        self.finale = False
         self.load_level(self.level)
 
     def play_bgm(self, music_key="summer"):
