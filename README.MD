@@ -24,7 +24,7 @@ To run the game using Python interpreter under the virtual environment, issue ``
 on the shell prompt. To activate the virtual environment, use one of the commands ```source .venv/bin/activate``` 
 on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not provided, stage 1 will be loaded.    
 
-## Keyboard controls 
+### Keyboard controls 
 * Left or A - Move to the left   
 * Right or D - Move to the right   
 * Up or W - Jump   
