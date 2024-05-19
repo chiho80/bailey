@@ -35,15 +35,15 @@ on the shell prompt. To activate the virtual environment, use one of the command
 on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not provided, stage 1 will be loaded.    
 
 ### Keyboard controls 
-* Left or A - Move to the left   
-* Right or D - Move to the right   
-* Up or W - Jump   
-* Lshift + (Left or A) - Run to the left   
-* Lshift + (Right or D) - Run to the right   
-* X or L - Dash and kill enemy   
-* ESC or P - Pause   
-* M - Mute or unmute   
-* Plus (+) or Minus (-) - Adjust display size   
+* ```&larr;``` or ```A``` - Move to the left   
+* ```&rarr;``` or ```D``` - Move to the right   
+* ```&uarr;``` or ```W``` - Jump   
+* Left ```shift``` + (```&larr;``` or ```A```) - Run to the left   
+* Left ```shift``` + (```&rarr;``` or ```D```) - Run to the right   
+* ```X``` or ```L``` - Dash and kill enemy   
+* ```esc``` or ```P``` - Pause   
+* ```M``` - Mute or unmute   
+* ```+``` or ```-``` - Adjust display size   
 
 ## Edit maps
 You may modiry the maps or create new map using map editor. Issue following command on shell prompt.   
@@ -51,14 +51,14 @@ You may modiry the maps or create new map using map editor. Issue following comm
 If ```[level]``` is not provided, level 1 will be open.   
 
 ### Controls
-* ```G```: Toggle on/offgrid   
-* ```A```, ```S```, ```D```, ```W```: Move viewport   
-* ```T```: Autotile   
-* ```C``` or ```V``` or Mouse scroll: Change tile class   
-* ```Z``` or ```X``` or ```Shift``` + Mouse scroll: Change variant   
-* ```M```: Toggle start/stop the motion for dynamic tiles   
-* ```O```: Save map   
-* ```ESC```: Quit the editor   
+* ```G``` - Toggle on/offgrid   
+* ```A```, ```S```, ```D```, ```W``` - Move viewport   
+* ```T``` - Autotile   
+* ```C``` or ```V``` or Mouse scroll - Change tile class   
+* ```Z``` or ```X``` or ```Shift``` + Mouse scroll - Change variant   
+* ```M``` - Toggle start/stop the motion for dynamic tiles   
+* ```O``` - Save map   
+* ```esc``` - Quit the editor   
 * Mouse position: Locate a map element
 * Mouse left click: Place a map element
 * Mouse right click: Delete a map element 
