@@ -26,7 +26,7 @@ pip install pillow
 Installing the packages on Mac OS is straightforward while MS Windows brings many hurdles. 
 On MS Windows, when facing the error related to the security policies during activating the virtual environment, 
 run the Windows PowerShell with administration privilege, then issue ```Set-ExecutionPolicy Unrestricted``` 
-on the shell prompt. Select ```Y``` on the questions. You will be able to activate the virtual environment 
+on the shell prompt. Select <kbd>Y</kbd> on the questions. You will be able to activate the virtual environment 
 to continue.  
 
 ## Run the game   
@@ -35,15 +35,15 @@ on the shell prompt. To activate the virtual environment, use one of the command
 on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not provided, stage 1 will be loaded.    
 
 ### Keyboard controls 
-* ```&larr;``` or ```A``` - Move to the left   
-* ```&rarr;``` or ```D``` - Move to the right   
-* <kbd>&uarr;</kbd>  ```&uarr;``` or ```W``` - Jump   
-* Left ```shift``` + (```&larr;``` or ```A```) - Run to the left   
-* Left ```shift``` + (```&rarr;``` or ```D```) - Run to the right   
-* ```X``` or ```L``` - Dash and kill enemy   
-* ```esc``` or ```P``` - Pause   
-* ```M``` - Mute or unmute   
-* ```+``` or ```-``` - Adjust display size   
+* <kbd>&larr;</kbd> or <kbd>A</kbd> - Move to the left   
+* <kbd>&rarr;</kbd> or <kbd>D</kbd> - Move to the right   
+* <kbd>&uarr;</kbd>  <kbd>&uarr;</kbd> or <kbd>W</kbd> - Jump   
+* Left <kbd>shift</kbd> + (<kbd>&larr;</kbd> or <kbd>A</kbd>) - Run to the left   
+* Left <kbd>shift</kbd> + (<kbd>&rarr;</kbd> or <kbd>D</kbd>) - Run to the right   
+* <kbd/>X</kbd> or <kbd>L</kbd> - Dash and kill enemy   
+* <kbd/>esc</kbd> or <kbd>P</kbd> - Pause   
+* <kbd/>M</kbd> - Mute or unmute   
+* <kbd/>+</kbd> or <kbd>-</kbd> - Adjust display size   
 
 ## Edit maps
 You may modiry the maps or create new map using map editor. Issue following command on shell prompt.   
@@ -51,14 +51,14 @@ You may modiry the maps or create new map using map editor. Issue following comm
 If ```[level]``` is not provided, level 1 will be open.   
 
 ### Controls
-* ```G``` - Toggle on/offgrid   
-* ```A```, ```S```, ```D```, ```W``` - Move viewport   
-* ```T``` - Autotile   
-* ```C``` or ```V``` or Mouse scroll - Change tile class   
-* ```Z``` or ```X``` or ```Shift``` + Mouse scroll - Change variant   
-* ```M``` - Toggle start/stop the motion for dynamic tiles   
-* ```O``` - Save map   
-* ```esc``` - Quit the editor   
+* <kbd>G</kbd> - Toggle on/offgrid   
+* <kbd>A</kbd>, <kbd>S</kbd>, <kbd>D</kbd>, <kbd>W</kbd> - Move viewport   
+* <kbd>T</kbd> - Autotile   
+* <kbd>C</kbd> or <kbd>V</kbd> or Mouse scroll - Change tile class   
+* <kbd>Z</kbd> or <kbd>X</kbd> or <kbd>Shift</kbd> + Mouse scroll - Change variant   
+* <kbd>M</kbd> - Toggle start/stop the motion for dynamic tiles   
+* <kbd>O</kbd> - Save map   
+* <kbd>esc</kbd> - Quit the editor   
 * Mouse position: Locate a map element
 * Mouse left click: Place a map element
 * Mouse right click: Delete a map element 
