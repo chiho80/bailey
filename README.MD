@@ -1,23 +1,33 @@
 ## Initial tasks
-Before running the game or building executable, create and acrivate a virtual environment, then install
-a required package - [pygame](https://www.pygame.org/). Follow one of the instructions depending on your operating system.
+Before running the game or building executable, create and activate a virtual environment, then install
+a required package - [pygame](https://www.pygame.org/). Follow one of the instructions depending on your operating system. 
+A package ```pyinstaller``` is optional, and only needed if you want to build the executable. 
+If ```pyinstaller``` crashes during building, ```pillow``` may solve the issue.
 
 ### On Mac OS
 ```
-/usr/bin/python3 -m venv .venv
-source .venv/bin/activate
-pip install pygame==2.5.2 
-```
+/usr/bin/python3 -m venv .venv   
+source .venv/bin/activate   
+pip install pygame==2.5.2   
+pip install pyinstaller   
+pip install pillow   
+```   
+Or simply run the script ```set_env.sh```.
 
 ### On MS Windows
 ```
-python -m venv .venv
-.venv\Scripts\activate
-pip install pygame==2.5.2 
+python -m venv .venv   
+.venv\Scripts\activate   
+pip install pygame==2.5.2   
+pip install pyinstaller   
+pip install pillow   
 ```   
-When facing the error related to the security policies during activating the virtual environment, 
+
+Installing the packages on Mac OS is straightforward while MS Windows brings many hurdles. 
+On MS Windows, when facing the error related to the security policies during activating the virtual environment, 
 run the Windows PowerShell with administration privilege, then issue ```Set-ExecutionPolicy Unrestricted``` 
-on the shell prompt. Select Y on the question. Now you will be able to activate the virtual environment.
+on the shell prompt. Select ```Y``` on the questions. You will be able to activate the virtual environment 
+to continue.  
 
 ## Run the game   
 To run the game using Python interpreter under the virtual environment, issue ```python main.py [level]``` 
