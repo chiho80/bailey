@@ -37,7 +37,7 @@ on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not p
 ### Keyboard controls 
 * <kbd>&larr;</kbd> or <kbd>A</kbd> - Move to the left   
 * <kbd>&rarr;</kbd> or <kbd>D</kbd> - Move to the right   
-* <kbd>&uarr;</kbd>  <kbd>&uarr;</kbd> or <kbd>W</kbd> - Jump   
+* <kbd>&uarr;</kbd> or <kbd>W</kbd> - Jump   
 * Left <kbd>shift</kbd> + (<kbd>&larr;</kbd> or <kbd>A</kbd>) - Run to the left   
 * Left <kbd>shift</kbd> + (<kbd>&rarr;</kbd> or <kbd>D</kbd>) - Run to the right   
 * <kbd/>X</kbd> or <kbd>L</kbd> - Dash and kill enemy   
@@ -54,8 +54,8 @@ If ```[level]``` is not provided, level 1 will be open.
 * <kbd>G</kbd> - Toggle on/offgrid   
 * <kbd>A</kbd>, <kbd>S</kbd>, <kbd>D</kbd>, <kbd>W</kbd> - Move viewport   
 * <kbd>T</kbd> - Autotile   
-* <kbd>C</kbd> or <kbd>V</kbd> or Mouse scroll - Change tile class   
-* <kbd>Z</kbd> or <kbd>X</kbd> or <kbd>Shift</kbd> + Mouse scroll - Change variant   
+* <kbd>C</kbd> or <kbd>V</kbd> or mouse scroll - Change tile class   
+* <kbd>Z</kbd> or <kbd>X</kbd> or left <kbd>Shift</kbd> + Mouse scroll - Change variant   
 * <kbd>M</kbd> - Toggle start/stop the motion for dynamic tiles   
 * <kbd>O</kbd> - Save map   
 * <kbd>esc</kbd> - Quit the editor   
