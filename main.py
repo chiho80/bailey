@@ -43,7 +43,7 @@ except:
 # Set app icon to be shown in the Dock during the game is running.
 if os.name == "nt":
     # Works for MS Windows. Only the file in extension of .ico will work.
-    pygame.display.set_icon(pygame.image.load("data/images/ico/win_512x512.ico"))
+    pygame.display.set_icon(pygame.image.load("data/images/ico/win_multi.ico"))
 else:
     pygame.display.set_icon(pygame.image.load("data/images/ico/macos_1024x1024x32.png"))
 
