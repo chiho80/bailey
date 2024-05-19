@@ -37,7 +37,7 @@ on Mac OS or ```.venv\Scripts\activate``` on Windows.  If ```[level]``` is not p
 ### Keyboard controls 
 * ```&larr;``` or ```A``` - Move to the left   
 * ```&rarr;``` or ```D``` - Move to the right   
-* ```&uarr;``` or ```W``` - Jump   
+* <kbd>&uarr;</kbd>  ```&uarr;``` or ```W``` - Jump   
 * Left ```shift``` + (```&larr;``` or ```A```) - Run to the left   
 * Left ```shift``` + (```&rarr;``` or ```D```) - Run to the right   
 * ```X``` or ```L``` - Dash and kill enemy   
