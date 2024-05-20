@@ -37,12 +37,19 @@ class Game:
         # Initiate fonts
         pygame.font.init()
 
+        # List up available options for the display sizes
+        desktop_size = pygame.display.get_desktop_sizes()[0]
+        self.display_sizes = [
+            (desktop_size[0] // i, desktop_size[1] // i) for i in [1.25, 1]
+        ] + [DISPLAY_SIZE_MIN]
         # Set display
-        self.display_sizes = DISPLAY_SIZE_OPTIONS
+        # When the game is started, it's not a full screen but slightly smaller than the full size.
         self.display_size_id = 0
         resize_screen(self, 0)
+        # Original pixel resolution of the game surface is the last
+        # element = (512, 288), which is defined in constants.py
         self.display = pygame.Surface(
-            self.display_sizes[DISPLAY_SIZE_DEFAULT_ID],
+            self.display_sizes[-1],
             pygame.SRCALPHA,
         )
 

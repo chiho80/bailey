@@ -47,15 +47,15 @@ def resize_screen(game, step):
     # Get a list of full size of user's desktops.
     # It's always a list of sizes for single or multiple desktops.
     desktop_size = pygame.display.get_desktop_sizes()[0]
-
-    while True:
-        # If selected screen size is too large, this one cannot be used.
-        game.display_size_id = (game.display_size_id + step) % len(game.display_sizes)
-        if (
-            game.display_sizes[game.display_size_id][0] <= desktop_size[0]
-            and game.display_sizes[game.display_size_id][1] <= desktop_size[1]
-        ):
-            break
+    game.display_size_id = (game.display_size_id + step) % len(game.display_sizes)
+    # while True:
+    #     # If selected screen size is too large, this one cannot be used.
+    #     game.display_size_id = (game.display_size_id + step) % len(game.display_sizes)
+    #     if (
+    #         game.display_sizes[game.display_size_id][0] <= desktop_size[0]
+    #         and game.display_sizes[game.display_size_id][1] <= desktop_size[1]
+    #     ):
+    #         break
 
     if game.display_sizes[game.display_size_id][0] == desktop_size[0]:
         # Full screen

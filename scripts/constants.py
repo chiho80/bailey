@@ -6,6 +6,9 @@
 #
 # Copyright (c) 2024 Chiho Kim. All rights reserved.
 
+
+import pygame
+
 # The first number of lives
 # If it's 4, a very first player + 3 more lives, total 4. 3 heads will be displayed
 FIRST_LIVES = 4
@@ -41,21 +44,8 @@ PLAYER_BOUNCE_BACK = True
 # If air_time is larger, player will die
 MAX_AIR_TIME_TO_DEAD = 140
 
-# Available display sizes. Keep every resolutions 16:9 ratio.
-DISPLAY_SIZE_OPTIONS = [
-    (1536, 864),  # JY's Samsung Laptop
-    (1600, 900),
-    (2048, 1152),
-    (2056, 1156),  # New MacBook Pro =  (2056, 1329)
-    (2560, 1440),
-    (2880, 1620),
-    (3200, 1800),
-    (5120, 2880),
-    (512, 288),
-    (1024, 576),
-]
-# Make sure to point (512, 288) (id starts from 0)
-DISPLAY_SIZE_DEFAULT_ID = 8
+# Actual pixel resolution of the game = (512, 288)
+DISPLAY_SIZE_MIN = (512, 288)
 
 # Path image base
 BASE_IMG_PATH = "data/images/"
