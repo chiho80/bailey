@@ -44,9 +44,6 @@ PLAYER_BOUNCE_BACK = True
 # If air_time is larger, player will die
 MAX_AIR_TIME_TO_DEAD = 140
 
-# Actual pixel resolution of the game = (512, 288)
-DISPLAY_SIZE_MIN = (512, 288)
-
 # Path image base
 BASE_IMG_PATH = "data/images/"
 
