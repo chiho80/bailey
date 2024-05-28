@@ -16,15 +16,22 @@ class StatusBoard:
         self.game = game
 
     def render(self, surf, pos=(3, 3)):
-        # Bailey lives (head icons)
-        for i in range(max(0, self.game.lives - 1)):
-            surf.blit(self.game.assets["small_heads/bailey"], (pos[0] + i * 11, pos[1]))
-
-        # Energy (bar)
-        x = pos[0] + max(0, self.game.lives - 1) * 11 + 2
-        pygame.draw.rect(surf, COLORS["black"], pygame.Rect(x, pos[1] + 2, 32, 3))
-        pygame.draw.rect(surf, COLORS["black"], pygame.Rect(x + 1, pos[1] + 1, 30, 5))
-        pygame.draw.rect(surf, COLORS["red"], pygame.Rect(x + 1, pos[1] + 2, 30, 3))
+        # Energy bar - position
+        # Energy bar - text
+        draw_text(
+            self.game.display,
+            "ENERGY",
+            self.game.font["text_size5"],
+            (pos[0], pos[1]),
+            text_col=COLORS["white"],
+            border_col=COLORS["black"],
+        )
+        x = 42
+        # Energy bar - border and background
+        pygame.draw.rect(surf, COLORS["black"], pygame.Rect(x, pos[1] + 2, 31, 3))
+        pygame.draw.rect(surf, COLORS["black"], pygame.Rect(x + 1, pos[1] + 1, 29, 5))
+        pygame.draw.rect(surf, COLORS["red"], pygame.Rect(x + 1, pos[1] + 2, 29, 3))
+        # Energy bar - remaining energy
         color = COLORS["yellow"]
         if self.game.player.energy <= 10:
             if int(self.game.time_remain / 100) % 2 == 1:
@@ -36,9 +43,20 @@ class StatusBoard:
             color,
             pygame.Rect(x + 1, pos[1] + 2, self.game.player.energy, 3),
         )
+        # Energy bar - grid
+        for i in range(10):
+            pygame.draw.rect(
+                surf,
+                COLORS["black"],
+                pygame.Rect(x + (i + 1) * 3, pos[1] + 2, 1, 3),
+            )
+
+        # Bailey lives (head icons)
+        for i in range(max(0, self.game.lives - 1)):
+            surf.blit(self.game.assets["small_heads/bailey"], (x + 37 + i * 11, pos[1]))
 
         # Stage number
-        x = pos[0] + 120
+        x = pos[0] + 135
         draw_text(
             self.game.display,
             f"STAGE {self.game.level}",
