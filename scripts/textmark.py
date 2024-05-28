@@ -6,12 +6,16 @@
 #
 # Copyright (c) 2024 Chiho Kim. All rights reserved.
 
+from scripts.utils import draw_text
+
 
 class TextMark:
-    def __init__(self, pos, text_surf, speed):
-        self.text_surf = text_surf
+    def __init__(self, pos, text, font, color, border_col, speed):
+        self.text = text
+        self.font = font
         self.pos = list(pos)
-        self.text_surf = text_surf
+        self.color = color
+        self.border_col = border_col
         self.speed = speed
 
     def update(self):
@@ -23,7 +27,13 @@ class TextMark:
         return not self.speed
 
     def render(self, surf, offset=(0, 0)):
-        surf.blit(
-            self.text_surf,
+        draw_text(
+            surf,
+            self.text,
+            self.font,
             (self.pos[0] - offset[0], self.pos[1] - offset[1]),
+            text_col=self.color,
+            align=("center", "middle"),
+            antialias=False,
+            border_col=self.border_col,
         )

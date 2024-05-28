@@ -334,9 +334,10 @@ class Enemy(PhysicsEntity):
                 self.game.textmarks.append(
                     TextMark(
                         self.game.player.rect(),
-                        self.game.font["text_size5"].render(
-                            str(SCORE[self.type]), False, COLORS["black"]
-                        ),
+                        str(SCORE[self.type]),
+                        self.game.font["text_size5"],
+                        COLORS["white"],
+                        COLORS["black"],
                         3,
                     )
                 )
@@ -442,9 +443,10 @@ class Player(PhysicsEntity):
                 self.game.textmarks.append(
                     TextMark(
                         self.game.player.rect(),
-                        self.game.font["text_size5"].render(
-                            "5", False, COLORS["black"]
-                        ),
+                        str(SCORE["fruit"]),
+                        self.game.font["text_size5"],
+                        COLORS["white"],
+                        COLORS["black"],
                         3,
                     )
                 )
