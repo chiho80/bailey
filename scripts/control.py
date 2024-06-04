@@ -71,4 +71,6 @@ def check_keyboard_input(game):
             if event.key == pygame.K_8:
                 game.level = min(game.level + 1, max([int(key) for key in LEVELS]))
                 game.load_level(game.level)
+            if event.key == pygame.K_0:
+                game.crt_id = (game.crt_id + 1) % len(game.crts)
     return quit_game

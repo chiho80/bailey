@@ -136,7 +136,7 @@ def save_score_highest(path, score):
     f.close()
 
 
-def load_image(path, trans_color=None, scale=1):
+def load_image(path, trans_color=None, scale=1, alpha=0):
     if trans_color:
         img = pygame.image.load(BASE_IMG_PATH + path).convert()
         img.set_colorkey(trans_color)
@@ -144,6 +144,9 @@ def load_image(path, trans_color=None, scale=1):
         img = pygame.image.load(BASE_IMG_PATH + path).convert_alpha()
     if scale != 1:
         img = pygame.transform.scale_by(img, scale)
+    if alpha:
+        img.set_alpha(alpha)
+
     return img
 
 

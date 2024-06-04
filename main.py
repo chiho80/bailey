@@ -474,6 +474,10 @@ def main():
         if game.finale:
             display_finale(game)
 
+        # CRT overlay
+        if game.crts[game.crt_id]:
+            game.display.blit(game.assets[game.crts[game.crt_id]], (0, 0))
+
         # If shake offset is defined, apply
         screenshake_offset = (
             random.random() * game.screenshake - game.screenshake / 2,

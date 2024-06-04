@@ -14,6 +14,10 @@ from scripts.animation import Animation
 def load_asset_images():
     assets = {
         "intro": load_image("intro.png", scale=0.3),
+        "crt1": load_image("crt/crt1.png", alpha=50),
+        "crt2": load_image("crt/crt2.jpg", alpha=30),
+        "crt3": load_image("crt/crt3.png", alpha=50, scale=0.45),
+        "crt4": load_image("crt/crt4.jpg", alpha=20, scale=0.85),
         "grass": load_images("tiles/grass"),
         "autumn": load_images("tiles/autumn"),
         "ice": load_images("tiles/ice"),

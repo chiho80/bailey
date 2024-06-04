@@ -100,6 +100,10 @@ class Game:
         # Parameter for shaking screen when impact on player is made.
         self.screenshake = 0
 
+        # CRT overlay effect
+        self.crts = [None] + [key for key in self.assets if key.startswith("crt")]
+        self.crt_id = 0
+
     def reset_game(self, first_level):
         """Should be called when the new game is starting.
         ex) very first game, or new game after the previous game is over.
