@@ -7,8 +7,6 @@
 # Copyright (c) 2024 Chiho Kim. All rights reserved.
 
 
-import pygame
-
 # The first number of lives
 # If it's 4, a very first player + 3 more lives, total 4. 3 heads will be displayed
 FIRST_LIVES = 4

@@ -48,14 +48,6 @@ def resize_screen(game, step):
     # It's always a list of sizes for single or multiple desktops.
     desktop_size = pygame.display.get_desktop_sizes()[0]
     game.display_size_id = (game.display_size_id + step) % len(game.display_sizes)
-    # while True:
-    #     # If selected screen size is too large, this one cannot be used.
-    #     game.display_size_id = (game.display_size_id + step) % len(game.display_sizes)
-    #     if (
-    #         game.display_sizes[game.display_size_id][0] <= desktop_size[0]
-    #         and game.display_sizes[game.display_size_id][1] <= desktop_size[1]
-    #     ):
-    #         break
 
     if game.display_sizes[game.display_size_id][0] == desktop_size[0]:
         # Full screen
@@ -87,6 +79,7 @@ def draw_text(
     align=("left", "top"),
     antialias=False,
     border_col=None,
+    border_thickness=1,
     blink=(10, 0),
 ):
     """blink = (time to show in ms, time to hide in ms)
@@ -111,13 +104,11 @@ def draw_text(
     if blink and pygame.time.get_ticks() % total_cycle > blink[0]:
         pass
     else:
-        if border_col:
+        if border_thickness and border_col:
             text_img_border = text_font.render(text, antialias, border_col)
-            surf.blit(text_img_border, (x - 1, y))
-            surf.blit(text_img_border, (x + 1, y))
-            surf.blit(text_img_border, (x, y - 1))
-            surf.blit(text_img_border, (x, y + 1))
-
+            for shift_x in range(-border_thickness, border_thickness + 1):
+                for shift_y in range(-border_thickness, border_thickness + 1):
+                    surf.blit(text_img_border, (x + shift_x, y + shift_y))
         surf.blit(text_img, (x, y))
 
     # Return position for any use...
